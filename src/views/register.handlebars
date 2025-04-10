@@ -1,10 +1,9 @@
 <body class="bodyRegistrarse">
-
     <header class="headerRegister"></header>
     <header class="headerRegistrarse">
         <a class="anclaLogo" href="/">
-            <i class="fas fa-film" aria-hidden="true"></i>
-            <span>CAC-Movies</span>
+            <i class="fas fa-coins" aria-hidden="true"></i>
+            <span>CHIQUI COINS</span>
         </a>
 
         <main id="main" class="main">
@@ -28,28 +27,21 @@
                         <div class="error-text"></div>
                     </div>
                     <div>
-                        <input type="date" placeholder="Fecha de Nacimiento" id="fechaNacimiento"
-                            name="fechaNacimiento">
-                        <div class="error-text"></div>
-                    </div>
-                    <div>
-                        <select name="pais" id="pais">
-                            <option value="Argentina">Argentina</option>
-                            <option value="Bolivia">Bolivia</option>
-                            <option value="Brasil">Brasil</option>
-                            <option value="Chile">Chile</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Ecuador">Ecuador</option>
-                            <option value="Paraguay">Paraguay</option>
-                            <option value="Perú">Perú</option>
-                            <option value="Uruguay">Uruguay</option>
-                            <option value="Venezuela">Venezuela</option>
+                        <select name="colegio" id="colegio">
+                            <option value="Jefferson">Thomas Jefferson</option>
+                            <option value="Sarmiento">Sarmiento</option>
                         </select>
                         <div class="error-text"></div>
                     </div>
-                    <div class="terminos">
-                        <input class="check" type="checkbox" id="terminos" name="terminos">
-                        <label class="textoCheck" for="terminos">Acepto términos y condiciones</label>
+                        <div>
+                        <select name="curso" id="curso">
+                            <option value="1">Primero</option>
+                            <option value="2">Segundo</option>
+                            <option value="3">Tercero</option>
+                            <option value="4">Cuarto</option>
+                            <option value="5">Quinto</option>
+                            <option value="6">Sexto</option>
+                        </select>
                         <div class="error-text"></div>
                     </div>
                     <div>
@@ -63,7 +55,7 @@
         <script>
             AOS.init();
         </script>
-        <script src="../js/registrationValidation.js"></script>
+        <script src="../../public/js/registrationValidation.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {

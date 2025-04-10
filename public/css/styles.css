@@ -39,22 +39,22 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #9f3647;
+    background: #F1FF83;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #9f3647;
+    background: #F1FF83;
 }
 
 body {
-    background-color: #181419;
+    background-color: #171717;
     color: white;
 }
 
 /*ESTILOS HEADER PARA ESCRITORIO*/
 .header {
-    background-color: #9f3647;
+    background-color: #171717;
     color: #ffffff;
     height: 10vh;
     position: sticky;
@@ -98,32 +98,33 @@ body {
 
                     &:hover {
                         transform: scale(0.95);
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                        box-shadow: 0 0 20px rgba(241, 255, 131, 0.8);
                         border-radius: 5px;
                     }
                 }
 
                 .linkNav.iniciarSesion {
-                    background-color: #181419;
+                    background-color: #171717;
                     color: white;
 
                     border-radius: 5px;
                     transition: transform 0.3s, box-shadow 0.3s;
 
                     &:hover {
-                        background-color: #9f3647;
+                        background-color: #F1FF83;
+                        color: #171717;
                     }
                 }
 
                 .linkNav.cerrarSesion {
-                    background-color: #181419;
+                    background-color: #171717;
                     color: white;
 
                     border-radius: 5px;
                     transition: transform 0.3s, box-shadow 0.3s;
 
                     &:hover {
-                        background-color: #9f3647;
+                        background-color: #F1FF83;
                     }
                 }
             }
@@ -172,7 +173,7 @@ body {
 .main {
     .sectionPrincipal {
         color: white;
-        background: linear-gradient(to right top, #0000008a, #0000008a), url(../images/pages/banner-bg.jpg);
+        background: linear-gradient(to right top, #0000006a, #0000006a), url(../images/pages/banner-bg.jpg);
         background-size: cover;
         background-position: center;
         height: 90vh;
@@ -195,8 +196,8 @@ body {
         }
 
         .botonRegistrarse {
-            background-color: #9f3647;
-            color: #ffffff;
+            background-color: #F1FF83;
+            color: #171717;
             padding: 1rem 2rem;
             border-radius: 5px;
             font-size: 1.2rem;
@@ -205,7 +206,8 @@ body {
             transition: transform 0.3s, box-shadow 0.3s;
 
             &:hover {
-                background-color: #9f3647;
+                background-color: #171717;
+                color: #F1FF83;
                 transform: scale(0.95);
                 box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             }
@@ -213,7 +215,7 @@ body {
     }
 
     .buscadorPrincipal {
-        background-color: #181419;
+        background-color: #171717;
         color: rgb(255, 255, 255);
         height: 50vh;
         display: flex;
@@ -246,7 +248,7 @@ body {
             }
 
             .botonBuscador {
-                background-color: #9f3647;
+                background-color: #F1FF83;
                 display: inline-block;
                 color: #ffffff;
                 height: 50px;
@@ -260,7 +262,7 @@ body {
                 transition: transform 0.3s, box-shadow 0.3s;
 
                 &:hover {
-                    background-color: #9f3647;
+                    background-color: #F1FF83;
                     transform: scale(0.95);
                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
                 }
@@ -329,7 +331,7 @@ body {
                     }
 
                     &:hover {
-                        box-shadow: 0 0 30px #9f3648cd;
+                        box-shadow: 0 0 30px #F1FF83CD;
                         transform: scale(0.9);
 
                     }
@@ -359,7 +361,7 @@ body {
             box-sizing: content-box;
             margin-top: 50px;
             margin-left: 20px;
-            background-color: #9f3647;
+            background-color: #F1FF83;
             color: #ffffff;
             padding: 1rem 1rem;
             border-radius: 5px;
@@ -370,7 +372,7 @@ body {
             transition: transform 0.3s, box-shadow 0.3s;
 
             &:hover {
-                background-color: #9f3647;
+                background-color: #F1FF83;
                 transform: scale(0.95);
                 box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             }
@@ -530,7 +532,7 @@ body {
 /*ESTILOS ESCRITORIO FOOTER*/
 .footer {
     padding: 20px;
-    background-color: #9f3647;
+    background-color: #171717;
     color: #ffffff;
     height: 18vh;
     display: flex;
@@ -560,7 +562,7 @@ body {
                 }
 
                 .administradorPeliculas {
-                    background-color: #181419;
+                    background-color: #171717;
                     color: white;
                     padding: 0.5rem 1rem;
                     border-radius: 5px;
@@ -614,7 +616,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #181419;
+    background-color: #171717;
     border: 5px solid rgba(0, 31, 85, 0.2);
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -729,7 +731,7 @@ body {
 
 .productosTable th {
     font-size: 26px;
-    background-color: #181419;
+    background-color: #171717;
 }
 
 .productosTable td {
@@ -776,7 +778,7 @@ body {
 /*ESTILOS ESCRITORIO PARA PAGINA REGISTRARSE */
 .bodyRegistrarse {
     height: 100vh;
-    background: linear-gradient(to right top, #24242473, #24242473), url(../images/pages/bg-register.jpg);
+    background: linear-gradient(to right top, #24242473, #24242473), url(../images/pages/bg-register.png);
     background-size: cover;
     background-position: center;
 
@@ -829,7 +831,7 @@ body {
                     padding: 0px 20px;
                     font-size: 1.2rem;
                     border-radius: 20px;
-                    border: 2px solid #9f3647;
+                    border: 2px solid #F1FF83;
                     background-color: #333333;
                     outline: none;
                     color: rgb(255, 255, 255);
@@ -861,12 +863,12 @@ body {
                 .boton {
                     width: 87%;
                     box-sizing: content-box;
-                    background-color: #9f3647;
-                    border: 2px solid #9f3647;
-                    color: #ffffff;
+                    background-color: #F1FF83;
+                    border: 2px solid #F1FF83;
+                    color: #171717;
                     padding: 1rem 1rem;
                     border-radius: 5px;
-                    font-size: 1rem;
+                    font-size: 1.5rem;
                     font-weight: 500;
 
                 }
@@ -955,7 +957,7 @@ body {
     align-items: center;
     text-align: center;
     padding: 20px;
-    background-color: #181419;
+    background-color: #171717;
     color: #ffffff;
     gap: 20px;
 
@@ -986,14 +988,14 @@ body {
                 }
 
                 .administradorPeliculas {
-                    background-color: #181419;
+                    background-color: #171717;
                     color: white;
                     padding: 0.5rem 1rem;
                     border-radius: 15px;
                     font-size: 50px;
 
                     &:hover {
-                        background-color: #9f3647;;
+                        background-color: #F1FF83;;
                         transform: scale(0.95);
                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                         border-radius: 15px;
@@ -1027,7 +1029,7 @@ body {
     align-items: center;
     text-align: center;
     padding: 20px;
-    background-color: #181419;
+    background-color: #171717;
     color: #ffffff;
     gap: 20px;
 
@@ -1058,14 +1060,14 @@ body {
                 }
 
                 .administradorPeliculas {
-                    background-color: #181419;
+                    background-color: #171717;
                     color: white;
                     padding: 0.5rem 1rem;
                     border-radius: 15px;
                     font-size: 50px;
 
                     &:hover {
-                        background-color: #9f3647;;
+                        background-color: #F1FF83;;
                         transform: scale(0.95);
                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                         border-radius: 15px;
@@ -1116,7 +1118,7 @@ body {
 }
 
 .tableProfile td a:hover {
-    color: #9f3647;
+    color: #F1FF83;
 }
 
 .button-group {
@@ -1144,7 +1146,7 @@ body {
     text-align: left;
     border: none;
     font-size: 22px;
-    background-color: #181419;
+    background-color: #171717;
     color: #fff;
     width: auto;
 }
@@ -1328,7 +1330,7 @@ body {
 }
 
 hr {
-    border: 1px solid #9f3647;
+    border: 1px solid #F1FF83;
     width: 80%;
     margin: 0 auto;
     margin-top: 40px;

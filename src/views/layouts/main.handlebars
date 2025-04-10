@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAC-MOVIES</title>
+    <title>CHIQUI COINS</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://kit.fontawesome.com/f7fb471b65.js" crossorigin="anonymous"></script>
@@ -17,14 +17,13 @@
 <header class="header">
     <nav class="navegacion">
         <a class="anclaLogo" href="/">
-            <i class="fas fa-film" aria-hidden="true"></i>
-            <span>CAC-Movies</span>
+            <i class="fas fa-coins" aria-hidden="true"></i>
+            <span>CHIQUI COINS</span>
         </a>
         <ul class="listaNav">
             {{#if sessionStarted}}
                 <li class="listaItem"><a class="linkNav cerrarSesion" href="/logout">Cerrar Sesión</a></li>
             {{else}}
-                <li class="listaItem"><a class="linkNav" href="#tendencias">Tendencias</a></li>
                 <li class="listaItem"><a class="linkNav" href="/register">Registrarse</a></li>
                 <li class="listaItem"><a class="linkNav iniciarSesion" href="/login">Iniciar Sesión</a></li>
             {{/if}}

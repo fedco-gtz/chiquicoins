@@ -16,9 +16,9 @@
                     <tr>
                         <th>Nombre y Apellido</th>
                         <th>E-mail</th>
-                        <th>País</th>
-                        <th>Rol</th>
-                        <th>Acciones</th>
+                        <th>Colegio</th>
+                        <th>Curso</th>
+                        <th>Modificar Rol</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,13 +26,13 @@
                     <tr>
                         <td>{{nombre}} {{apellido}}</td>
                         <td>{{email}}</td>
-                        <td>{{pais}}</td>
-                        <td>{{rol}}</td>
+                        <td>{{colegio}}</td>
+                        <td>{{curso}}</td>
                         <td>
                             <form action="/userAdmin/modifyRole/{{id}}" method="POST">
                                 <select name="role" class="formUser">
-                                    <option value="1" {{#if (role_is_user)}}selected{{/if}}>User</option>
-                                    <option value="2" {{#if (role_is_admin)}}selected{{/if}}>Admin</option>
+                                    <option value="1" {{#if (role_is_user)}}selected{{/if}}>Estudiante</option>
+                                    <option value="2" {{#if (role_is_admin)}}selected{{/if}}>Profesor</option>
                                 </select>
                                 <br>
                                 <button type="submit" class="botonModificar">Modificar</button>

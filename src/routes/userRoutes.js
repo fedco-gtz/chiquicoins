@@ -24,13 +24,13 @@ router.get('/register', async (req, res) => {
 
 // Ruta para crear un usuario en register.handlebars
 router.post('/register', async (req, res) => {
-    const { nombre, apellido, email, password, fechaNacimiento, pais, terminos } = req.body;
+    const { nombre, apellido, email, password, colegio, curso } = req.body;
 
     try {
         const id = await generarIdUnicoUser();
-        const consulta = 'INSERT INTO usuarios (id, nombre, apellido, email, password, fechaNacimiento, pais, terminos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        const consulta = 'INSERT INTO usuarios (id, nombre, apellido, email, password, colegio, curso) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
-        await pool.query(consulta, [id, nombre, apellido, email, password, fechaNacimiento, pais, terminos]);
+        await pool.query(consulta, [id, nombre, apellido, email, password, colegio, curso]);
 
         res.render('login', { isRegisterPage: true });
 

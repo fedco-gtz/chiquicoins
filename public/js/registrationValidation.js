@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const apellido = document.getElementById('apellido');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-    const fechaNacimiento = document.getElementById('fechaNacimiento');
-    const pais = document.getElementById('pais');
-    const terminos = document.getElementById('terminos');
+    const rol = document.getElementById('rol');
     const errorTexts = document.querySelectorAll('.error-text');
 
     form.addEventListener('submit', function(event) {
@@ -38,22 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             password.nextElementSibling.textContent = 'La contraseña debe tener al menos 6 caracteres';
             hasError = true;
         }
-
-        // Validate fecha de nacimiento
-        if (!validateDate(fechaNacimiento.value)) {
-            fechaNacimiento.nextElementSibling.textContent = 'La fecha de nacimiento no es válida';
-            hasError = true;
-        }
-
-        // Validate pais
-        if (pais.value === '') {
-            pais.nextElementSibling.textContent = 'El país es obligatorio';
-            hasError = true;
-        }
-
-        // Validate terminos
-        if (!terminos.checked) {
-            terminos.nextElementSibling.textContent = 'Debe aceptar los términos y condiciones';
+        
+        // Validate apellido
+        if (rol.value.trim() === '2') {
+            apellido.nextElementSibling.textContent = 'El apellido es obligatorio';
             hasError = true;
         }
 
@@ -67,8 +53,4 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(email);
     }
 
-    function validateDate(date) {
-        const re = /^\d{4}-\d{2}-\d{2}$/;
-        return re.test(date);
-    }
 });

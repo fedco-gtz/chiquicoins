@@ -758,7 +758,9 @@ body {
 
 .productosTable .botonModificar,
 .productosTable .botonEliminar,
-.botonModificar, .botonEliminar, .botonEnviar {
+.botonModificar,
+.botonEliminar,
+.botonEnviar {
     padding: 8px 12px;
     background-color: #4CAF50;
     color: white;
@@ -1171,24 +1173,24 @@ body {
             height: auto;
             padding: 30px 15px;
             gap: 15px;
-    
+
             .tituloPrincipal {
                 font-size: 2.5rem;
             }
-    
+
             .navegacion .listaNav {
                 flex-direction: column;
                 gap: 10px;
                 align-items: center;
-    
+
                 .listaItem {
                     margin-left: 0;
                     margin-bottom: 10px;
-    
+
                     .linkNav {
                         font-size: 1rem;
                     }
-    
+
                     .administradorPeliculas {
                         font-size: 30px;
                         padding: 0.4rem 0.8rem;
@@ -1196,45 +1198,45 @@ body {
                 }
             }
         }
-    
+
         .formUser {
             font-size: 18px;
             width: 100%;
             text-align: center;
         }
-    
+
         .container {
             padding: 10px;
             max-width: 90%;
         }
-    
+
         .tableProfile {
             font-size: 16px;
         }
-    
+
         .tableProfile th,
         .tableProfile td {
             font-size: 16px;
             padding: 8px;
         }
-    
+
         .tableProfile td .inputProfile {
             font-size: 16px;
             width: 100%;
         }
-    
+
         .tableProfile td a {
             margin-left: 0;
             display: block;
             margin-top: 5px;
         }
-    
+
         .button-group {
             flex-direction: column;
             gap: 10px;
             align-items: stretch;
         }
-    
+
         .button {
             width: 100%;
             padding: 10px;
@@ -1247,28 +1249,28 @@ body {
         justify-content: center;
         align-items: center;
         margin-top: 30px;
-    
+
         .listaNav {
             list-style: none;
             display: flex;
             align-items: center;
-    
+
             .listaItem {
                 margin-left: 20px;
-    
+
                 .linkNav {
                     text-decoration: none;
                     color: #ffffff;
                     font-weight: 700;
                 }
-    
+
                 .administradorPeliculas {
                     background-color: #171717;
                     color: white;
                     padding: 0.5rem 1rem;
                     border-radius: 15px;
                     font-size: 32px;
-    
+
                     &:hover {
                         background-color: #F1FF83;
                         color: #171717;
@@ -1277,6 +1279,22 @@ body {
                         border-radius: 15px;
                     }
                 }
+            }
+        }
+
+        .buscadorPrincipal {
+            background-color: #171717;
+            color: rgb(255, 255, 255);
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .tituloSection {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-top: 2.5rem;
             }
         }
     }
@@ -1563,40 +1581,40 @@ hr {
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
-  }
-  
-  .coinIcon {
+}
+
+.coinIcon {
     width: 300px;
     height: 300px;
-  }
+}
 
-  .textCoin {
+.textCoin {
     font-size: 30px;
     padding: 10px;
-  }
+}
 
-  .titleCoin{
+.titleCoin {
     font-size: 36px;
     background-color: #4CAF50;
     padding: 10px;
     border-radius: 10px;
     font-weight: bold;
     color: #171717;
-  }
+}
 
-  .coinsEarned {
+.coinsEarned {
     color: #007bff;
     font-weight: bold;
-  }
+}
 
-  .spentCoins {
+.spentCoins {
     color: #d9534f;
     font-weight: bold;
-  }
+}
 
-  .textData{
+.textData {
     font-size: 24px;
-  }
+}
 
 .terminos-container {
     max-width: 800px;
@@ -1608,43 +1626,43 @@ hr {
     font-family: 'Segoe UI', sans-serif;
     color: #333;
     line-height: 1.6;
-  }
-  
-  .terminos-container h1 {
+}
+
+.terminos-container h1 {
     font-size: 28px;
     text-align: center;
     color: #007bff;
     margin-bottom: 10px;
-  }
-  
-  .terminos-container .fecha,
-  .faq-container .fecha {
+}
+
+.terminos-container .fecha,
+.faq-container .fecha {
     font-size: 14px;
     text-align: center;
     color: #888;
     margin-bottom: 30px;
-  }
-  
-  .terminos-container h2 {
+}
+
+.terminos-container h2 {
     font-size: 20px;
     margin-top: 25px;
     color: #444;
     border-left: 5px solid #007bff;
     padding-left: 10px;
-  }
-  
-  .terminos-container p {
+}
+
+.terminos-container p {
     font-size: 16px;
     margin-top: 10px;
-  }
+}
 
-  .volver-container {
+.volver-container {
     display: flex;
     justify-content: center;
     margin: 40px;
-  }
-  
-  .btn-volver {
+}
+
+.btn-volver {
     padding: 10px 30px;
     background-color: #171717;
     border: none;
@@ -1654,34 +1672,34 @@ hr {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .btn-volver:hover {
+}
+
+.btn-volver:hover {
     background-color: #F1FF83;
     color: #171717;
-  }
+}
 
-  .faq-container {
+.faq-container {
     max-width: 800px;
     margin: 50px auto;
     padding: 30px;
     background: #fffef8;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
     font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .faq-container h1 {
+}
+
+.faq-container h1 {
     text-align: center;
     color: #007bff;
     margin-bottom: 30px;
-  }
-  
-  .faq-item {
+}
+
+.faq-item {
     margin-bottom: 15px;
-  }
-  
-  .faq-question {
+}
+
+.faq-question {
     width: 100%;
     text-align: left;
     padding: 15px;
@@ -1693,13 +1711,13 @@ hr {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .faq-question:hover {
+}
+
+.faq-question:hover {
     background-color: #1565c0;
-  }
-  
-  .faq-answer {
+}
+
+.faq-answer {
     display: none;
     padding: 15px;
     margin-top: 5px;
@@ -1708,44 +1726,43 @@ hr {
     border-radius: 8px;
     color: #000000;
     line-height: 1.5;
-  }
-    
-  .volver-container {
+}
+
+.volver-container {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-  }
+}
 
-  .ayuda-container {
+.ayuda-container {
     max-width: 800px;
     margin: 40px auto;
     padding: 30px;
     background-color: #fdfaf4;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
     color: #333;
-  }
-  
-  .ayuda-container h1 {
+}
+
+.ayuda-container h1 {
     color: #007bff;
     text-align: center;
     margin-bottom: 25px;
-  }
-  
-  .ayuda-container h2 {
+}
+
+.ayuda-container h2 {
     color: #248af8;
     margin-top: 25px;
     margin-bottom: 10px;
-  }
-  
-  .ayuda-container ul {
+}
+
+.ayuda-container ul {
     padding-left: 20px;
     list-style-type: none;
-  }
-  
-  .ayuda-container ul li::before {
+}
+
+.ayuda-container ul li::before {
     content: "✔️ ";
     margin-right: 5px;
-  }
-  
+}

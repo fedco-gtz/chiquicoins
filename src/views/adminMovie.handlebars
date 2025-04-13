@@ -10,126 +10,44 @@
 <body>
     <main id="main" class="main">
         <section class="adminSection">
-            <h1 class="tituloSection">Agregar Película</h1>
+            <h1 class="tituloSection">Asignando Chiqui Coins</h1>
             <form class="formularioProducto" action="/adminMovie" method="POST">
                 <div class="formGroup">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="usuario_id">Seleccionar estudiante</label>
+                    <input list="usuarios" id="usuario_nombre" name="usuario_nombre" required>
+                    <input class="hidden" type="hidden" id="usuario_id" name="usuario_id">
+                    <datalist id="usuarios">
+                        {{#each usuarios}}
+                        <option value="{{this.nombre}} {{this.apellido}} ({{this.curso}}° - {{this.colegio}})"
+                            data-id="{{this.id}}"></option>
+                        {{/each}}
+                    </datalist>
                 </div>
+
                 <div class="formGroup">
-                    <label for="imagen">Imagen</label>
-                    <input type="text" id="imagen" name="imagen" required>
+                    <label for="coins_ganados">Coins ganados</label>
+                    <input type="number" id="coins_ganados" name="coins_ganados" min="0" value="0" required>
                 </div>
+
                 <div class="formGroup">
-                    <label for="banner">Banner</label>
-                    <input type="text" id="banrer" name="banner" required>
+                    <label for="coins_gastados">Coins gastados</label>
+                    <input type="number" id="coins_gastados" name="coins_gastados" min="0" value="0" required>
                 </div>
-                <div class="formGroup">
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                </div>
-                <div class="formGroup">
-                    <label for="aclamada">Aclamada por el público</label>
-                    <input type="checkbox" id="aclamada" name="aclamada">
-                </div>
-                <div class="formGroup">
-                    <label for="genero">Género</label>
-                    <div class="radioGroup">
-                        <div><input type="radio" id="genero" name="genero" value="1"><label for="Acción">Acción</label>
-                        </div>
-                        <div><input type="radio" id="genero" name="genero" value="2"><label
-                                for="Comedia">Comedia</label></div>
-                        <div><input type="radio" id="genero" name="genero" value="3"><label for="Drama">Drama</label>
-                        </div>
-                        <div><input type="radio" id="genero" name="genero" value="4"><label
-                                for="Ciencia Ficción">Ciencia Ficción</label></div>
-                        <div><input type="radio" id="genero" name="genero" value="5"><label for="Crimen">Crimen</label>
-                        </div>
-                        <div><input type="radio" id="genero" name="genero" value="6"><label
-                                for="Aventura">Aventura</label></div>
-                        <div><input type="radio" id="genero" name="genero" value="7"><label
-                                for="Fantasía">Fantasía</label></div>
-                        <div><input type="radio" id="genero" name="genero" value="8"><label
-                                for="Suspenso">Suspenso</label></div>
-                        <div><input type="radio" id="genero" name="genero" value="9"><label
-                                for="Historia">Historia</label></div>
-                        <div><input type="radio" id="genero" name="genero" value="10"><label
-                                for="Western">Western</label></div>
-                    </div>
-                    <div class="formGroup">
-                        <label for="director">Director</label>
-                        <input type="text" id="director" name="director" required>
-                    </div>
-                    <div class="formGroup">
-                        <label for="escritor">Escritor</label>
-                        <input type="text" id="escritor" name="escritor" required>
-                    </div>
-                </div>
-                <div class="formGroup">
-                    <label for="idioma">Idioma Original</label>
-                    <input type="text" id="idioma" name="idioma" required>
-                </div>
-                <div class="formGroup">
-                    <label for="duracion">Duración (en minutos)</label>
-                    <input type="text" id="duracion" name="duracion" required>
-                </div>
-                <div class="formGroup">
-                    <label for="estreno">Año de estreno</label>
-                    <input type="text" id="estreno" name="estreno" required>
-                </div>
-                <div class="formGroup">
-                    <label for="presupuesto">Costo de producción</label>
-                    <input type="text" id="presupuesto" name="presupuesto" required>
-                </div>
-                <div class="formGroup">
-                    <label for="recaudacion">Recaudación</label>
-                    <input type="text" id="recaudacion" name="recaudacion" required>
-                </div>
-                <div class="formGroup">
-                    <label for="trailer">Trailer (link)</label>
-                    <input type="text" id="trailer" name="trailer" required>
-                </div>
-                </div>
+
                 <div class="formGroup botonGroup">
-                    <button type="submit" class="botonEnviar">Agregar</button>
+                    <button type="submit" class="botonEnviar">Asignar</button>
                 </div>
             </form>
-            <hr>
-            <h1 class="tituloSection">Gestión de Película</h1>
-            {{#if productos.length}}
-            <h2 class="subtituloSection">Actualmente hay {{productos.length}} películas en el catálogo</h2>
-            {{/if}}
-            <table class="productosTable">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Imagen</th>
-                        <th>Descripción</th>
-                        <th>Género</th>
-                        <th>Aclamada</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each productos}}
-                    <tr>
-                        <td>{{nombre}}</td>
-                        <td><img src="{{img}}" alt="{{nombre}}"></td>
-                        <td>{{descripcion}}</td>
-                        <td>{{genero}}</td>
-                        <td>{{#if aclamado}}Sí{{else}}No{{/if}}</td>
-                        <td>
-                            <a href="/adminMovie/modify/{{id}}" class="botonModificar">Modificar</a>
-                            <form action="/adminMovie/delete/{{id}}" method="POST" class="formEliminar">
-                                <button type="submit" class="botonEliminar">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </section>
     </main>
 </body>
+<script>
+    document.getElementById('usuario_nombre').addEventListener('input', function () {
+        var datalist = document.getElementById('usuarios');
+        var selectedOption = Array.from(datalist.options).find(option => option.value === this.value);
+        if (selectedOption) {
+            document.getElementById('usuario_id').value = selectedOption.getAttribute('data-id');
+        }
+    });
+</script>
 
 </html>

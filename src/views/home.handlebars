@@ -2,46 +2,34 @@
     <main id="main" class="main">
         <section data-aos="zoom-in" data-aos-duration="1000" class="sectionPrincipal">
             <h1 class="tituloPrincipal">CHIQUI COINS</h1>
-            <h2 class="subtituloPrincipal">Sumá conocimientos, ganá coins: <br> aprendé Matemática mientras desbloqueás recompensas.</h2>
+            <h2 class="subtituloPrincipal">Sumá conocimientos, ganá coins: <br> aprendé Matemática mientras desbloqueás
+                recompensas.</h2>
             <a class="botonRegistrarse" href="./register">Registrate</a>
         </section>
         <hr>
         <section id="tendencias" data-aos="fade-up" data-aos-offset="400" data-aos-delay="100" data-aos-duration="1000"
             class="peliculasTendencia">
-            <h3 class="tituloSection">¿Cómo ganar Chiqui Coins?</h3>
-            <div class="peliculas">
-                <div class="peliculas">
-                    {{#each productos}}
-                    {{#unless this.aclamado}}
-                    <a href="/detail/{{id}}">
-                        <div class="pelicula">
-                            <div>
-                                <img class="imgTendencia" src="{{this.img}}" alt="{{this.nombre}}" loading="lazy">
-                                <div class="tituloPelicula">
-                                    <h4>{{this.nombre}}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    {{/unless}}
-                    {{/each}}
-                </div>
-            </div>
+            <h3 class="tituloSection">🎉 ¿Cómo ganar Chiqui Coins? 🪙</h3>
+            <p class="parrafoSection">
+                Durante toda la unidad, vas a tener distintas tareas y actividades que te invitan a aprender, resolver
+                desafíos y poner a prueba tu ingenio. Cada vez que participes, completes una actividad o te animes a
+                resolver lo que se propone, ¡vas a ganar Chiqui Coins! 💪✨
+            </p>
         </section>
         <hr>
-        <section data-aos="fade-up" data-aos-offset="200" data-aos-delay="100" data-aos-duration="2000"
-            class="peliculasAclamadas">
-            <h3 class="tituloSection"></h3>
-            <div class="aclamadas">
-                {{#each productos}}
-                {{#if this.aclamado}}
-                <div class="peliculaItem">
-                    <img class="imgAclamada" src="{{this.img}}" alt="{{this.nombre}}" loading="lazy">
-                </div>
-                {{/if}}
-                {{/each}}
-            </div>
+        <section id="tendencias" data-aos="fade-up" data-aos-offset="400" data-aos-delay="100" data-aos-duration="1000"
+            class="peliculasTendencia">
+            <h3 class="tituloSection">¿Y para qué sirven? 🤔</h3>
+            <p class="parrafoSection">
+                Al final de la unidad, vas a tener la oportunidad de canjear tus Chiqui Coins en una divertida subasta,
+                donde vas a poder usarlas para obtener puntos extra en la evaluación final. 😎📈
+<br>
+                Así que, cuanto más participás, más ganás. 
+                <br>
+                <br>¡A juntar Chiqui Coins y a divertirse aprendiendo! 🚀
+            </p>
         </section>
+        <hr>
     </main>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

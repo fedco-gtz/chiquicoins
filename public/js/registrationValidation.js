@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const apellido = document.getElementById('apellido');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-    const rol = document.getElementById('rol');
     const errorTexts = document.querySelectorAll('.error-text');
 
     form.addEventListener('submit', function(event) {
@@ -37,11 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             hasError = true;
         }
         
-        // Validate apellido
-        if (rol.value.trim() === '2') {
-            apellido.nextElementSibling.textContent = 'El apellido es obligatorio';
-            hasError = true;
-        }
 
         if (hasError) {
             event.preventDefault();

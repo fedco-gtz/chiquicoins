@@ -19,7 +19,7 @@ pool.getConnection()
         console.log('Base de datos conectada');
     })
     .catch(err => {
-        console.error('Hubo un error al conectarse a la DB:', err);
+        console.error('Hubo un error al conectarse a la Base de datos', err);
     });
 
 export default pool;

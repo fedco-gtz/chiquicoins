@@ -1,52 +1,60 @@
-<!DOCTYPE html>
-<html lang="es">
+<main id="main" class="main">
+    <section class="adminSection">
+        <h1 class="tituloSection">Listado de Usuarios</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Controlar Usuarios</title>
-</head>
+        <form action="/adminUser" method="GET" class="filtrosUsuarios">
+            <div class="filtroGrupo">
+                <span class="filtro">Filtrar por Colegio:</span>
+                <button type="submit" name="colegio" value="Jefferson" class="botonFiltro">Thomas Jefferson</button>
+                <button type="submit" name="colegio" value="Sarmiento" class="botonFiltro">Sarmiento</button>
+                <button type="submit" name="colegio" value="null" class="botonFiltro">Profesores</button>
+            </div>
 
-<body>
-    <main id="main" class="main">
-        <section class="adminSection">
-            <h1 class="tituloSection">Listado de Usuarios</h1>
-            <table class="productosTable">
-                <thead>
-                    <tr>
-                        <th>Nombre y Apellido</th>
-                        <th>E-mail</th>
-                        <th>Colegio</th>
-                        <th>Curso</th>
-                        <th>Modificar Rol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each usuarios}}
-                    <tr>
-                        <td>{{nombre}} {{apellido}}</td>
-                        <td>{{email}}</td>
-                        <td>{{colegio}}</td>
-                        <td>{{curso}}</td>
-                        <td>
-                            <form action="/userAdmin/modifyRole/{{id}}" method="POST">
-                                <select name="role" class="formUser">
-                                    <option value="1" {{#if (role_is_user)}}selected{{/if}}>Estudiante</option>
-                                    <option value="2" {{#if (role_is_admin)}}selected{{/if}}>Profesor</option>
-                                </select>
-                                <br>
-                                <button type="submit" class="botonModificar">Modificar</button>
-                            </form>
-                        </td>
-                        {{else}}
-                    <tr>
-                        <td colspan="5">No se encontraron usuarios.</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </section>
-    </main>
-</body>
+            <div class="filtroGrupo">
+                <span>Filtrar por Curso:</span>
+                <button type="submit" name="curso" value="1" class="botonFiltro">Primero</button>
+                <button type="submit" name="curso" value="1" class="botonFiltro">Segundo</button>
+                <button type="submit" name="curso" value="3" class="botonFiltro">Tercero</button>
+                <button type="submit" name="curso" value="4" class="botonFiltro">Cuarto</button>
+                <button type="submit" name="curso" value="5" class="botonFiltro">Quinto</button>
+                <button type="submit" name="curso" value="6" class="botonFiltro">Sexto</button>
+            </div>
+                    <div class="filtroGrupo">
+            <a href="/adminUser" class="quitarFiltros">Quitar filtro</a>
+        </div>
+        </form>
 
-</html>
+        <table class="productosTable">
+            <thead>
+                <tr>
+                    <th>Nombre y Apellido</th>
+                    <th>E-mail</th>
+                    <th>Modificar Rol</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usuarios}}
+                <tr>
+                    <td>{{nombre}} {{apellido}}</td>
+                    <td>{{email}}</td>
+
+                    <td>
+                        <form action="/userAdmin/modifyRole/{{id}}" method="POST">
+                            <select name="role" class="formUser">
+                                <option value="1" {{#if (role_is_user)}}selected{{/if}}>Estudiante</option>
+                                <option value="2" {{#if (role_is_admin)}}selected{{/if}}>Profesor</option>
+                            </select>
+                            <br>
+                            <button type="submit" class="botonModificar">Modificar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="5">No se encontraron usuarios.</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </section>
+</main>

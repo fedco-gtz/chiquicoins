@@ -1292,9 +1292,9 @@ body {
             align-items: center;
 
             .tituloSection {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 font-weight: 700;
-                margin-top: 2.5rem;
+                margin-top: 3.5rem;
             }
         }
     }

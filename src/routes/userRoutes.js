@@ -33,6 +33,22 @@ router.get('/register', async (req, res) => {
     res.render('register', { isRegisterPage: true });
 });
 
+// Ruta para mostrar terms.handlebars
+router.get('/terms', async (req, res) => {
+    res.render('terms', { isRegisterPage: true });
+});
+
+// Ruta para mostrar faq.handlebars
+router.get('/faq', async (req, res) => {
+    res.render('faq', { isRegisterPage: true });
+});
+
+// Ruta para mostrar help.handlebars
+router.get('/help', async (req, res) => {
+    res.render('help', { isRegisterPage: true });
+});
+
+
 // Ruta para crear un usuario en register.handlebars
 router.post('/register', async (req, res) => {
     const { nombre, apellido, email, password, colegio, curso } = req.body;

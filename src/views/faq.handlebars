@@ -1,0 +1,93 @@
+<body>
+    <section class="faq-container">
+        <h1>Preguntas Frecuentes – Chiquicoins</h1>
+        <p class="fecha">Última actualización: 13/04/2025</p>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Qué son los Chiquicoins?</button>
+            <div class="faq-answer">
+                <p>Los Chiquicoins son una moneda ficticia creada con fines educativos. No tienen valor real, pero
+                    sirven como herramienta para promover valores, hábitos positivos y aprendizaje financiero en el
+                    aula.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Para qué se pueden usar los Chiquicoins?</button>
+            <div class="faq-answer">
+                <p>Los estudiantes pueden canjearlos por beneficios como actividades especiales, materiales escolares,
+                    recreos extendidos o cualquier recompensa que acuerde el docente.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Quién entrega los Chiquicoins?</button>
+            <div class="faq-answer">
+                <p>Los docentes o el equipo educativo los asignan según criterios como el cumplimiento de tareas, la
+                    colaboración, el respeto o el esfuerzo personal.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Cómo se cargan o descuentan los Chiquicoins?</button>
+            <div class="faq-answer">
+                <p>Desde el panel del docente, quien puede sumar o descontar Chiquicoins a cada estudiante en función
+                    del comportamiento o las actividades realizadas.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Qué se aprende con este sistema?</button>
+            <div class="faq-answer">
+                <p>Responsabilidad, organización, trabajo colaborativo y nociones básicas de economía y administración
+                    de recursos.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Es seguro el sistema?</button>
+            <div class="faq-answer">
+                <p>Sí. Toda la información está protegida y solo accesible para docentes y estudiantes habilitados. No
+                    se comparte con terceros.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Se necesita conexión a internet?</button>
+            <div class="faq-answer">
+                <p>Sí, ya que la plataforma funciona de manera online. Puede usarse desde celulares, tablets o
+                    computadoras.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿Se puede personalizar el sistema?</button>
+            <div class="faq-answer">
+                <p>¡Claro! Se puede adaptar el diseño, las recompensas, reglas y montos de acuerdo al proyecto
+                    educativo.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">¿A quién consulto si tengo dudas?</button>
+            <div class="faq-answer">
+                <p>Podés hablar directamente con tu docente o escribir al soporte técnico desde la sección de contacto.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="volver-container">
+        <button class="btn-volver" onclick="history.back()">Volver</button>
+    </div>
+</body>
+<script>
+    const preguntas = document.querySelectorAll('.faq-question');
+
+    preguntas.forEach(pregunta => {
+        pregunta.addEventListener('click', () => {
+            const respuesta = pregunta.nextElementSibling;
+            respuesta.style.display = (respuesta.style.display === 'block') ? 'none' : 'block';
+        });
+    });
+</script>

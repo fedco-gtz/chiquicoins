@@ -1164,6 +1164,86 @@ body {
     width: auto;
 }
 
+/*ESTILOS FOOTER CELULAR Y TABLET CHICA*/
+@media (max-width: 1200px) {
+    @media (max-width: 1200px) {
+        .mainUserProfile {
+            height: auto;
+            padding: 30px 15px;
+            gap: 15px;
+    
+            .tituloPrincipal {
+                font-size: 2.5rem;
+            }
+    
+            .navegacion .listaNav {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+    
+                .listaItem {
+                    margin-left: 0;
+                    margin-bottom: 10px;
+    
+                    .linkNav {
+                        font-size: 1rem;
+                    }
+    
+                    .administradorPeliculas {
+                        font-size: 30px;
+                        padding: 0.4rem 0.8rem;
+                    }
+                }
+            }
+        }
+    
+        .formUser {
+            font-size: 18px;
+            width: 100%;
+            text-align: center;
+        }
+    
+        .container {
+            padding: 10px;
+            max-width: 90%;
+        }
+    
+        .tableProfile {
+            font-size: 16px;
+        }
+    
+        .tableProfile th,
+        .tableProfile td {
+            font-size: 16px;
+            padding: 8px;
+        }
+    
+        .tableProfile td .inputProfile {
+            font-size: 16px;
+            width: 100%;
+        }
+    
+        .tableProfile td a {
+            margin-left: 0;
+            display: block;
+            margin-top: 5px;
+        }
+    
+        .button-group {
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+        }
+    
+        .button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+    }
+}
+
+
 /*ESTILOS ESCRITORIO DETALLE PELICULA*/
 .mainDetalle {
 

@@ -1,4 +1,18 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.querySelector('#loginForm');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (event) {
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
+
+            // Guardar en localStorage
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+        });
+    }
+
+    // Detectar sesión iniciada y cambiar menú
     const header = document.querySelector('.header');
     const listaNav = document.querySelector('.listaNav');
 

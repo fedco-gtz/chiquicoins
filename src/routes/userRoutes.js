@@ -1,7 +1,18 @@
 import { Router } from 'express';
 import pool from '../db/db.js';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router = Router();
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    }
+});
 
 // Función para generar un ID único de 5 dígitos
 const generarIdUnicoUser = async () => {
@@ -28,9 +39,43 @@ router.post('/register', async (req, res) => {
 
     try {
         const id = await generarIdUnicoUser();
-        const consulta = 'INSERT INTO usuarios (id, nombre, apellido, email, password, colegio, curso) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const role_id = 1;
+        const consulta = `
+            INSERT INTO usuarios (id, nombre, apellido, email, password, colegio, curso, role_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `;
 
-        await pool.query(consulta, [id, nombre, apellido, email, password, colegio, curso]);
+        await pool.query(consulta, [id, nombre, apellido, email, password, colegio, curso, role_id]);
+
+        const mailOptions = {
+            from: 'coinschiqui@gmail.com',
+            to: email,
+            subject: '¡Bienvenido/a a ChiquiCoins! 🪙✨',
+            html: `
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px solid #ddd; max-width: 500px; margin: auto;">
+                <h3 style="color: #2c3e50;">👋 Hola <span style="color: #2980b9;">${nombre} ${apellido}</span> 😊</h3>
+  
+                <p style="font-size: 16px; color: #333;">
+                ✅ Te registraste correctamente en nuestra plataforma 🎉. <br>
+                Estos son los datos que cargaste para usar en 
+                <strong style="color: #e67e22;">ChiquiCoins 🪙</strong>:
+                </p>
+
+                <ul style="list-style: none; padding: 0;">
+                <li><strong>📛 Nombre:</strong> ${nombre}</li>
+                <li><strong>🧾 Apellido:</strong> ${apellido}</li>
+                <li><strong>📧 Email:</strong> ${email}</li>
+                <li><strong>🏫 Colegio:</strong> ${colegio}</li>
+                <li><strong>📚 Curso:</strong> ${curso}° año</li>
+                </ul>
+
+                <p style="margin-top: 20px; font-weight: bold; color: #27ae60;">Gracias por registrarte 🎉</p>
+                <p style="font-size: 12px; color: #999; text-transform: uppercase;">NO RESPONDER</p>
+                </div>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
 
         res.render('login', { isRegisterPage: true });
 
@@ -79,7 +124,7 @@ router.post('/login', async (req, res) => {
                     id,
                     nombre,
                     apellido,
-                    curso, 
+                    curso,
                     colegio,
                     coins
                 });
@@ -149,7 +194,40 @@ router.post('/userAdmin/modifyRole/:id', async (req, res) => {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
-        await pool.query('UPDATE usuarios SET role_id = ? WHERE id = ?', [newRoleId, userId]);
+        const user = userRows[0];
+        const { nombre, apellido, email } = user;
+
+        await pool.query('UPDATE usuarios SET role_id = ?, colegio = NULL, curso = NULL WHERE id = ?', [newRoleId, userId]);
+
+        const mailOptions = {
+            from: 'coinschiqui@gmail.com',
+            to: email,
+            subject: '¡Felicidades, ahora eres Administrador/a de ChiquiCoins! 🪙🎉',
+            html: `
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px solid #ddd; max-width: 500px; margin: auto;">
+                <h3 style="color: #2c3e50;">👋 Hola <span style="color: #2980b9;">${nombre} ${apellido}</span> 😊</h3>
+  
+                <p style="font-size: 16px; color: #333;">
+                ✅ ¡Ahora sos Administrador/a de <strong style="color: #e67e22;">ChiquiCoins 🪙</strong>! 🚀
+                </p>
+
+                <p style="font-size: 16px; color: #333;">
+                    Estos son los datos que cargaste para tu cuenta:
+                </p>
+
+                <ul style="list-style: none; padding: 0;">
+                    <li><strong>📛 Nombre:</strong> ${nombre}</li>
+                    <li><strong>🧾 Apellido:</strong> ${apellido}</li>
+                    <li><strong>📧 Email:</strong> ${email}</li>
+                </ul>
+
+                <p style="margin-top: 20px; font-weight: bold; color: #27ae60;">¡Ahora puedes administrar ChiquiCoins con todos los privilegios! 🎉</p>
+                <p style="font-size: 12px; color: #999; text-transform: uppercase;">NO RESPONDER</p>
+                </div>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
 
         res.redirect('/adminUser');
 
@@ -176,13 +254,13 @@ router.get('/profileUser/:id', async (req, res) => {
         WHERE usuario_id = ? 
         GROUP BY usuario_id
     `;
-    const [resultadosCoins] = await pool.query(consultaCoins, [id]);
+        const [resultadosCoins] = await pool.query(consultaCoins, [id]);
 
-    const coins = resultadosCoins.map(row => ({
-        coins_ganados: row.coins_ganados,
-        coins_gastados: row.coins_gastados,
-        disponibles: row.coins_ganados - row.coins_gastados
-    }));
+        const coins = resultadosCoins.map(row => ({
+            coins_ganados: row.coins_ganados,
+            coins_gastados: row.coins_gastados,
+            disponibles: row.coins_ganados - row.coins_gastados
+        }));
 
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
@@ -256,7 +334,33 @@ router.post('/profile/:id/delete', async (req, res) => {
     const id = parseInt(req.params.id, 10);
 
     try {
-        const consulta = 'DELETE FROM usuarios WHERE id = ?';
+        // Obtener datos del usuario antes de eliminarlo
+        const [userRows] = await pool.query('SELECT nombre, apellido, email FROM usuarios WHERE id = ?', [id]);
+        if (userRows.length === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        const { nombre, apellido, email } = userRows[0];
+
+        // Enviar mail de despedida
+        const mailOptions = {
+            from: 'coinschiqui@gmail.com',
+            to: email,
+            subject: '👋 ¡Hasta pronto desde ChiquiCoins!',
+            html: `
+                <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; max-width: 500px; margin: auto; border: 1px solid #ccc;">
+                    <h2 style="color: #2c3e50;">${nombre} ${apellido}, gracias por ser parte de ChiquiCoins 🪙</h2>
+                    <p>Te despedimos con una sonrisa y con gratitud por el tiempo que compartimos en esta comunidad educativa. 😊</p>
+                    <p>Esperamos que hayas disfrutado de la experiencia y te deseamos lo mejor en tus futuros caminos. ✨</p>
+                    <p>Si algún día querés volver, ¡acá estaremos con los brazos abiertos!</p>
+                    <p style="color: #888; font-size: 12px; text-transform: uppercase;">Este mensaje es automático. No responder.</p>
+                </div>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        // Eliminar registros asociados y al usuario
         await pool.query('DELETE FROM catalogo WHERE usuario_id = ?', [id]);
         await pool.query('DELETE FROM usuarios WHERE id = ?', [id]);
 

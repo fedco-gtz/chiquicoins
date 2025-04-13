@@ -313,6 +313,7 @@ router.get('/profile/:id', async (req, res) => {
 router.post('/profile/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const { nombre, apellido, email, password, colegio, curso } = req.body;
+
     try {
         const consulta = `
             UPDATE usuarios 
@@ -322,6 +323,34 @@ router.post('/profile/:id', async (req, res) => {
         await pool.query(consulta, [
             nombre, apellido, email, password, colegio, curso, id
         ]);
+
+        // Mail de confirmación de actualización
+        const mailOptions = {
+            from: 'coinschiqui@gmail.com',
+            to: email,
+            subject: '¡Tu perfil en ChiquiCoins fue actualizado! 📝✨',
+            html: `
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fefefe; padding: 20px; border-radius: 10px; border: 1px solid #ccc; max-width: 500px; margin: auto;">
+                    <h3 style="color: #2c3e50;">Hola <span style="color: #2980b9;">${nombre} ${apellido}</span> 👋</h3>
+                    <p style="font-size: 16px; color: #333;">
+                        🛠️ ¡Actualizaste exitosamente tu perfil en <strong style="color: #e67e22;">ChiquiCoins 🪙</strong>!
+                    </p>
+                    <p>Estos son tus datos actualizados:</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>📛 Nombre:</strong> ${nombre}</li>
+                        <li><strong>🧾 Apellido:</strong> ${apellido}</li>
+                        <li><strong>📧 Email:</strong> ${email}</li>
+                        ${colegio ? `<li><strong>🏫 Colegio:</strong> ${colegio}</li>` : ''}
+                        ${curso ? `<li><strong>📚 Curso:</strong> ${curso}° año</li>` : ''}
+                    </ul>
+                    <p style="margin-top: 20px; color: #27ae60; font-weight: bold;">Gracias por seguir formando parte 💚</p>
+                    <p style="font-size: 12px; color: #999; text-transform: uppercase;">NO RESPONDER</p>
+                </div>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+
         res.redirect(`/profile/${id}`);
     } catch (error) {
         console.error('Hubo un error al actualizar los datos del usuario:', error);

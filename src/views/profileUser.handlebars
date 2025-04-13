@@ -29,42 +29,21 @@
                 class="buscadorPrincipal">
                 <h2 class="tituloSection">Tus ChiquiCoins</h2>
 
+                <div class="textData"> {{ nombre }} {{ apellido }} | {{ curso }}° año | Colegio {{ colegio }} </div>
 
-
-
-                {{#if resultados.length}}
-                <section id="tendencias" data-aos="fade-up" data-aos-offset="400" data-aos-delay="100"
-                    data-aos-duration="1000" class="peliculasTendencia">
-                    <section class="resultadosBusqueda">
-                        <h3>Resultados de búsqueda</h3>
-                        <br>
-                        <ul>
-                            {{#each resultados}}
-                            <div class="peliculas">
-                                <div class="peliculas">
-                                    <a href="/detail/{{id}}">
-                                        <div class="pelicula">
-                                            <div>
-                                                <img class="imgTendencia" src="../images/pages/catalogue/{{ this.img }}"
-                                                    alt="{{ this.nombre }}" loading="lazy">
-                                                <div class="tituloPelicula">
-                                                    <h4>{{ this.nombre }}</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <br>
-                            <button class="button return" type="button" onclick="goBack()">Volver</button>
-                            {{/each}}
-                        </ul>
-                    </section>
-                    {{else}}
-                    <!-- <p>No se encontraron películas que coincidan con tu búsqueda.</p> -->
-                    {{/if}}
-                </section>
-                <br><br>
+                {{#each coins}}
+                <div class="coinInfo">
+                    <img src="../images/pages/moneda.png" alt="ChiquiCoin" class="coinIcon">
+                    <div>
+                        <h4 class="textCoin">
+                            Ganados: <span class="coinsEarned">{{ this.coins_ganados }} ₡</span>
+                        </h4>
+                        <h4 class="textCoin">
+                            Gastadas: <span class="spentCoins">{{ this.coins_gastados }} ₡</span>
+                        </h4>
+                        <h4 class="titleCoin">Disponibles: {{ this.disponibles }} ₡</h4>
+                        {{/each}}
+                    </div>
             </section>
         </section>
     </section>

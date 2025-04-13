@@ -50,16 +50,38 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const consultaUsuario = 'SELECT id, nombre, apellido, role_id FROM usuarios WHERE email = ? AND password = ?';
+        const consultaUsuario = 'SELECT id, nombre, apellido, curso, colegio, role_id FROM usuarios WHERE email = ? AND password = ?';
         const [resultadosUsuario] = await pool.query(consultaUsuario, [email, password]);
+
         if (resultadosUsuario.length > 0) {
             const usuario = resultadosUsuario[0];
-            const { id, nombre, apellido, role_id } = usuario;
+            const { id, nombre, apellido, curso, colegio, role_id } = usuario;
+
+            const consultaCoins = `
+                SELECT 
+                    usuario_id, 
+                    SUM(coins_ganados) AS coins_ganados, 
+                    SUM(coins_gastados) AS coins_gastados 
+                FROM catalogo 
+                WHERE usuario_id = ? 
+                GROUP BY usuario_id
+            `;
+            const [resultadosCoins] = await pool.query(consultaCoins, [id]);
+
+            const coins = resultadosCoins.map(row => ({
+                coins_ganados: row.coins_ganados,
+                coins_gastados: row.coins_gastados,
+                disponibles: row.coins_ganados - row.coins_gastados
+            }));
+
             if (role_id === 1) {
                 res.render('profileUser', {
                     id,
                     nombre,
                     apellido,
+                    curso, 
+                    colegio,
+                    coins
                 });
             } else if (role_id === 2) {
                 res.render('profileAdmin', { nombre, apellido });
@@ -142,8 +164,25 @@ router.get('/profileUser/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
 
     try {
-        const consulta = 'SELECT id, nombre, apellido FROM usuarios WHERE id = ?';
+        const consulta = 'SELECT id, nombre, curso, colegio, apellido FROM usuarios WHERE id = ?';
         const [rows] = await pool.query(consulta, [id]);
+
+        const consultaCoins = `
+        SELECT 
+            usuario_id, 
+            SUM(coins_ganados) AS coins_ganados, 
+            SUM(coins_gastados) AS coins_gastados 
+        FROM catalogo 
+        WHERE usuario_id = ? 
+        GROUP BY usuario_id
+    `;
+    const [resultadosCoins] = await pool.query(consultaCoins, [id]);
+
+    const coins = resultadosCoins.map(row => ({
+        coins_ganados: row.coins_ganados,
+        coins_gastados: row.coins_gastados,
+        disponibles: row.coins_ganados - row.coins_gastados
+    }));
 
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
@@ -153,6 +192,9 @@ router.get('/profileUser/:id', async (req, res) => {
             id: rows[0].id,
             nombre: rows[0].nombre,
             apellido: rows[0].apellido,
+            curso: rows[0].curso,
+            colegio: rows[0].colegio,
+            coins
         });
 
     } catch (error) {

@@ -5,7 +5,8 @@
         <form action="/adminUser" method="GET" class="filtrosUsuarios">
             <div class="filtroGrupo">
                 <span class="filtro">Filtrar por Colegio:</span>
-                <button type="submit" name="colegio" value="Jefferson" class="botonFiltro">Thomas Jefferson</button>
+                <button type="submit" name="colegio" value="Thomas Jefferson" class="botonFiltro">Thomas
+                    Jefferson</button>
                 <button type="submit" name="colegio" value="Sarmiento" class="botonFiltro">Sarmiento</button>
                 <button type="submit" name="colegio" value="null" class="botonFiltro">Profesores</button>
             </div>
@@ -19,9 +20,9 @@
                 <button type="submit" name="curso" value="5" class="botonFiltro">Quinto</button>
                 <button type="submit" name="curso" value="6" class="botonFiltro">Sexto</button>
             </div>
-                    <div class="filtroGrupo">
-            <a href="/adminUser" class="quitarFiltros">Quitar filtro</a>
-        </div>
+            <div class="filtroGrupo">
+                <a href="/adminUser" class="quitarFiltros">Quitar filtro</a>
+            </div>
         </form>
 
         <table class="productosTable">
@@ -56,5 +57,12 @@
                 {{/each}}
             </tbody>
         </table>
+        <nav class="navegacion">
+            <ul class="listaNav">
+                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin">Volver al
+                        perfil</a></li>
+                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a></li>
+            </ul>
+        </nav>
     </section>
 </main>

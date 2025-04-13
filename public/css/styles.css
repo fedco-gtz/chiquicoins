@@ -226,7 +226,7 @@ body {
         .tituloSection {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
         }
 
         .buscadorPeliculas {
@@ -623,7 +623,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #171717;
-    border: 5px solid rgba(0, 31, 85, 0.2);
+    border: 5px solid rgba(241, 255, 131, 0.2);
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -1078,7 +1078,7 @@ body {
 
                     &:hover {
                         background-color: #F1FF83;
-                        ;
+                        color: #171717;
                         transform: scale(0.95);
                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                         border-radius: 15px;
@@ -1398,3 +1398,82 @@ hr {
     background-color: #F1FF83;
     color: #171717;
 }
+
+.navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+
+    .listaNav {
+        list-style: none;
+        display: flex;
+        align-items: center;
+
+        .listaItem {
+            margin-left: 20px;
+
+            .linkNav {
+                text-decoration: none;
+                color: #ffffff;
+                font-weight: 700;
+            }
+
+            .administradorPeliculas {
+                background-color: #171717;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 15px;
+                font-size: 32px;
+
+                &:hover {
+                    background-color: #F1FF83;
+                    color: #171717;
+                    transform: scale(0.95);
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+}
+
+.coinInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .coinIcon {
+    width: 300px;
+    height: 300px;
+  }
+
+  .textCoin {
+    font-size: 30px;
+    padding: 10px;
+  }
+
+  .titleCoin{
+    font-size: 36px;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #171717;
+  }
+
+  .coinsEarned {
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .spentCoins {
+    color: #d9534f;
+    font-weight: bold;
+  }
+
+  .textData{
+    font-size: 24px;
+  }

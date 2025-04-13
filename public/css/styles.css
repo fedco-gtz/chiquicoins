@@ -1241,6 +1241,45 @@ body {
             font-size: 16px;
         }
     }
+
+    .navegacion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    
+        .listaNav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+    
+            .listaItem {
+                margin-left: 20px;
+    
+                .linkNav {
+                    text-decoration: none;
+                    color: #ffffff;
+                    font-weight: 700;
+                }
+    
+                .administradorPeliculas {
+                    background-color: #171717;
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 15px;
+                    font-size: 32px;
+    
+                    &:hover {
+                        background-color: #F1FF83;
+                        color: #171717;
+                        transform: scale(0.95);
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                        border-radius: 15px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -1559,7 +1598,6 @@ hr {
     font-size: 24px;
   }
 
-  /* CSS */
 .terminos-container {
     max-width: 800px;
     margin: 40px auto;

@@ -1,88 +1,215 @@
-<body>
-    <main id="mainDetalle" class="mainDetalle">
-        <section class="detalle" style="background: linear-gradient(to right top, #6d6969a7, #6d6969a7), url('{{producto.banner}}');" data-aos="zoom-in">
-            <div class="contenedorDetalle">
-                <div class="imgDetalle">
-                    <img src="{{producto.img}}" alt="{{producto.nombre}}">
-                </div>
-                <div class="textoDetalle">
-                    <h1>{{producto.nombre}}</h1>
-                    <p>{{producto.estreno}} • {{producto.nombre_genero}} • {{producto.duracion}} min</p>
-                    <h2>Descripción general</h2>
-                    <p>{{producto.descripcion}}</p>
-                    <div class="contenedorCreditos">
-                        <div>
-                            <h3>{{producto.director}}</h3>
-                            <p>Director</p>
-                        </div>
-                        <div>
-                            <h3>{{producto.escritor}}</h3>
-                            <p>Escritor</p>
-                        </div>
-                        <div>
-                            <h3>{{producto.idioma}}</h3>
-                            <p>Idioma Original</p>
-                        </div>
-                    </div>
-                </div>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de ChiquiCoins</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        form {
+            margin: 0 auto 20px auto;
+            width: 37%;
+            background-color: rgb(42, 42, 42);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem
+        }
+
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .mensaje {
+            margin-top: 20px;
+            font-style: italic;
+            color: #F1FF83;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        select {
+            margin-right: 20px;
+            padding: 5px;
+            border-radius: 30px;
+            border: solid 2px #ffb183;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: #171717;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #F1FF83;
+            color: #171717;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #171717;
+            text-align: left;
+            color: #171717;
+            text-align: center;
+        }
+
+        th {
+            background-color: #F1FF83;
+            color: #171717;
+            justify-content: center;
+            align-items: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .contenedor-circulos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .circulo {
+            width: auto;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-radius: 25px;
+            padding: 10px;
+        }
+
+        .circulo p {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .circulo p strong {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .rojo {
+            background-color: #171717;
+            color: #ddd;
+            border: solid 3px #F1FF83;
+        }
+    </style>
+</head>
+
+<body class="main">
+    <section class="adminSection">
+        <h1 class="tituloSection">Detalle de ChiquiCoins</h1>
+        <form method="POST" action="/detail">
+            <label for="colegio">Colegio:</label>
+            <select name="colegio" id="colegio" required>
+                <option value="">Colegio</option>
+                {{#each colegios}}
+                <option value="{{this.colegio}}" {{#if this.selected}}selected{{/if}}>
+                    {{this.colegio}}
+                </option>
+                {{/each}}
+            </select>
+            <label for="curso">Curso:</label>
+            <select name="curso" id="curso" required>
+                <option value="">Curso</option>
+                {{#each cursos}}
+                <option value="{{this.curso}}" {{#if this.selected}}selected{{/if}}>
+                    {{this.curso}}
+                </option>
+                {{/each}}
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+        {{#if mostrarMensaje}}
+        <p class="mensaje">Totales en Colegio
+            {{#each estudiantes}}
+            {{#if @first}}{{this.colegio}}{{/if}}
+            {{/each}}
+        </p>
+        <div class="contenedor-circulos">
+            <div class="circulo rojo">
+                <p>{{totalEstudiantesColegio}}<br><strong>ESTUDIANTES</strong></p>
             </div>
-        </section>
-        <section class="trailer" data-aos="fade-up" data-aos-offset="400" data-aos-delay="50" data-aos-duration="1000">
-            <div class="contenedorTrailer">
-                <h2>Ver trailer</h2>
-                <iframe width="560" height="315" src="{{producto.trailer}}" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+            <div class="circulo rojo">
+                <p>{{totalMonedasColegio}}<br><strong>MONEDAS GANADAS</strong></p>
             </div>
-            <div class="contenedorInfo">
-                <div class="redes">
-                    <ul>
-                        <li>
-                            <a href="https://www.facebook.com" target="_blank">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com" target="_blank">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://instagram.com" target="_blank">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://buenosaires.gob.ar/educacion/codo-codo-40" target="_blank">
-                                <i class="fas fa-link"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="info">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan="2">Información</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Idioma Original</strong></td>
-                                <td>{{producto.idioma}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Presupuesto de rodaje</strong></td>
-                                <td>$ {{producto.presupuesto}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Recaudación</strong></td>
-                                <td>$ {{producto.recaudacion}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+        {{/if}}
+
+        {{#if estudiantes.length}}
+        <p class="mensaje">Totales en 
+            {{#each estudiantes}}
+            {{#if @first}}{{this.curso}}° año{{/if}}
+            {{/each}}
+        </p>
+        <div class="contenedor-circulos">
+            <div class="circulo rojo">
+                <p>{{totalEstudiantes}} <br> <strong>ESTUDIANTES</strong></p>
             </div>
-        </section>
-    </main>
+            <div class="circulo rojo">
+                <p>{{totalMonedas}} <br> <strong>MONEDAS GANADAS</strong></p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>E-mail</th>
+                    <th>Coins Ganadas</th>
+                    <th>Coins Gastadas</th>
+                    <th>Coins Disponibles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each estudiantes}}
+                <tr>
+                    <td>{{this.apellido}}, {{this.nombre}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.monedas_ganadas}}</td>
+                    <td>{{this.monedas_gastadas}}</td>
+                    <td>{{this.monedas_disponibles}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{else}}
+        <p class="mensaje">Seleccioná un colegio y un curso para ver los resultados.</p>
+        {{/if}}
+    </section>
 </body>
+
+</html>

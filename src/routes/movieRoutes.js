@@ -14,7 +14,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Función para generar un ID único de 5 dígitos
 const generarIdUnico = async () => {
     let id;
     let existe = true;
@@ -28,7 +27,6 @@ const generarIdUnico = async () => {
     return id;
 };
 
-// Ruta para renderizar productos en home.handlebars
 router.get('/', async (req, res) => {
     try {
         res.render('home');
@@ -38,7 +36,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Ruta para renderizar el formulario de coins con usuarios en adminMovie.handlebars
 router.get('/adminMovie', async (req, res) => {
     try {
         const consultaUsuarios = `SELECT id, nombre, apellido, colegio, curso FROM usuarios WHERE role_id = 1`;
@@ -57,7 +54,6 @@ router.get('/adminMovie', async (req, res) => {
     }
 });
 
-// Ruta para asignar coins y volver a renderizar adminMovie.handlebars
 router.post('/adminMovie', async (req, res) => {
     const { usuario_id, coins_ganados, coins_gastados } = req.body;
 
@@ -116,5 +112,80 @@ router.post('/adminMovie', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+router.get('/detail', async (req, res) => {
+    try {
+        const [colegios] = await pool.query('SELECT DISTINCT colegio FROM usuarios ORDER BY colegio');
+        const [cursos] = await pool.query('SELECT DISTINCT curso FROM usuarios ORDER BY curso');
+
+        res.render('detail', {
+            estudiantes: [],
+            colegios,
+            cursos
+        });
+
+    } catch (error) {
+        console.error('Error al cargar los filtros:', error.message);
+        res.status(500).send('Ocurrió un error al cargar la vista.');
+    }
+});
+
+router.post('/detail', async (req, res) => {
+    const { colegio, curso } = req.body;
+
+    try {
+        const [estudiantes] = await pool.query(`
+            SELECT 
+                u.nombre, 
+                u.apellido,
+                u.email,
+                u.curso,
+                u.colegio,
+                COALESCE(SUM(c.coins_ganados), 0) AS monedas_ganadas,
+                COALESCE(SUM(c.coins_gastados), 0) AS monedas_gastadas,
+                COALESCE(SUM(c.coins_ganados) - SUM(c.coins_gastados), 0) AS monedas_disponibles
+            FROM usuarios u
+            LEFT JOIN catalogo c ON u.id = c.usuario_id
+            WHERE u.colegio = ? AND u.curso = ?
+            GROUP BY u.id
+            ORDER BY monedas_ganadas DESC
+        `, [colegio, curso]);
+
+        const [resumenColegio] = await pool.query(`
+            SELECT 
+                COUNT(DISTINCT u.id) AS totalEstudiantes,
+                COALESCE(SUM(c.coins_ganados), 0) AS totalMonedas
+            FROM usuarios u
+            LEFT JOIN catalogo c ON u.id = c.usuario_id
+            WHERE u.colegio = ?
+        `, [colegio]);
+
+        const totalEstudiantesColegio = resumenColegio[0].totalEstudiantes;
+        const totalMonedasColegio = resumenColegio[0].totalMonedas;
+        const totalEstudiantes = estudiantes.length;
+        const totalMonedas = estudiantes.reduce((sum, est) => sum + parseInt(est.monedas_ganadas), 0);
+
+        const [colegios] = await pool.query('SELECT DISTINCT colegio FROM usuarios ORDER BY colegio');
+        const [cursos] = await pool.query('SELECT DISTINCT curso FROM usuarios ORDER BY curso');
+
+        res.render('detail', {
+            estudiantes,
+            colegios,
+            cursos,
+            selectedColegio: colegio,
+            selectedCurso: curso,
+            totalEstudiantes,
+            totalMonedas,
+            totalEstudiantesColegio,
+            totalMonedasColegio,
+            mostrarMensaje: true
+        });
+
+    } catch (error) {
+        console.error('Error al filtrar estudiantes:', error.message);
+        res.status(500).send('Ocurrió un error al filtrar los datos.');
+    }
+});
+
 
 export default router;

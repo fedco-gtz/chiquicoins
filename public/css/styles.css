@@ -1248,7 +1248,7 @@ body {
     }
 
     .textData {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     
     .coinInfo {
@@ -1269,9 +1269,9 @@ body {
     }
     
     .titleCoin {
-        font-size: 22px;
+        font-size: 22px !important;
         background-color: #4CAF50;
-        padding: 7px;
+        padding: 7px !important;
         border-radius: 10px;
         font-weight: bold;
         color: #171717;
@@ -1288,7 +1288,7 @@ body {
     }
 
     .separador{
-        margin-top: 50px;
+        margin-top: 50px !important;
     }
 
 

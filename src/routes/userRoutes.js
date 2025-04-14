@@ -85,6 +85,12 @@ router.post('/register', async (req, res) => {
                 <li><strong>📚 Curso:</strong> ${curso}° año</li>
                 </ul>
 
+                <p style="margin-top: 20px;">
+            👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                Accede a ChiquiCoins
+                </a>
+                </p>
+
                 <p style="margin-top: 20px; font-weight: bold; color: #27ae60;">Gracias por registrarte 🎉</p>
                 <p style="font-size: 12px; color: #999; text-transform: uppercase;">NO RESPONDER</p>
                 </div>
@@ -237,6 +243,12 @@ router.post('/userAdmin/modifyRole/:id', async (req, res) => {
                     <li><strong>📧 Email:</strong> ${email}</li>
                 </ul>
 
+                <p style="margin-top: 20px;">
+            👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                Accede a ChiquiCoins
+                </a>
+                </p>
+
                 <p style="margin-top: 20px; font-weight: bold; color: #27ae60;">¡Ahora puedes administrar ChiquiCoins con todos los privilegios! 🎉</p>
                 <p style="font-size: 12px; color: #999; text-transform: uppercase;">NO RESPONDER</p>
                 </div>
@@ -340,7 +352,6 @@ router.post('/profile/:id', async (req, res) => {
             nombre, apellido, email, password, colegio, curso, id
         ]);
 
-        // Mail de confirmación de actualización
         const mailOptions = {
             from: 'coinschiqui@gmail.com',
             to: email,
@@ -359,6 +370,12 @@ router.post('/profile/:id', async (req, res) => {
                         ${colegio ? `<li><strong>🏫 Colegio:</strong> ${colegio}</li>` : ''}
                         ${curso ? `<li><strong>📚 Curso:</strong> ${curso}° año</li>` : ''}
                     </ul>
+
+                    <p style="margin-top: 20px;">
+                    👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                    Accede a ChiquiCoins
+                    </a>
+                    </p>
                     <p style="margin-top: 20px; color: #27ae60; font-weight: bold;">Gracias por seguir formando parte 💚</p>
                     <p style="font-size: 12px; color: #999; text-transform: uppercase;">NO RESPONDER</p>
                 </div>
@@ -398,6 +415,11 @@ router.post('/profile/:id/delete', async (req, res) => {
                     <p>Te despedimos con una sonrisa y con gratitud por el tiempo que compartimos en esta comunidad educativa. 😊</p>
                     <p>Esperamos que hayas disfrutado de la experiencia y te deseamos lo mejor en tus futuros caminos. ✨</p>
                     <p>Si algún día querés volver, ¡acá estaremos con los brazos abiertos!</p>
+                                    <p style="margin-top: 20px;">
+            👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                Accede a ChiquiCoins
+                </a>
+                </p>
                     <p style="color: #888; font-size: 12px; text-transform: uppercase;">Este mensaje es automático. No responder.</p>
                 </div>
             `

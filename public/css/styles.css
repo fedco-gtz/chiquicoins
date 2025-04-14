@@ -1264,8 +1264,8 @@ body {
     }
     
     .textCoin {
-        font-size: 22px;
-        padding: 10px;
+        font-size: 22px !important;
+        padding: 10px !important;
     }
     
     .titleCoin {
@@ -1288,7 +1288,7 @@ body {
     }
 
     .separador{
-        margin-top: 30px;
+        margin-top: 50px;
     }
 
 

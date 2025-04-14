@@ -47,6 +47,9 @@
                             <br>
                             <button type="submit" class="botonModificar">Modificar</button>
                         </form>
+                        <form action="/sendMail/{{id}}" method="POST">
+                            <button type="submit" class="botonMail">Enviar Mail</button>
+                        </form>
                     </td>
                 </tr>
                 {{else}}
@@ -60,7 +63,8 @@
             <ul class="listaNav">
                 <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin">Volver al
                         perfil</a></li>
-                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a></li>
+                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a>
+                </li>
             </ul>
         </nav>
     </section>

@@ -461,4 +461,90 @@ router.get('/profile/:id', async (req, res) => {
     }
 });
 
+router.get('/email/:id', async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).send('ID inválido');
+    }
+
+    try {
+        const [userRows] = await pool.query('SELECT nombre, apellido, password, email FROM usuarios WHERE id = ?', [id]);
+        if (userRows.length === 0) {
+            return res.status(404).send('Usuario no encontrado');
+        }
+
+        const { nombre, apellido, email, password } = userRows[0];
+
+        const htmlContent = `
+            <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; max-width: 600px; margin: auto; border: 1px solid #ccc;">
+                <h2 style="color: #2c3e50;">Hola ${nombre} ${apellido},</h2>
+                <p>Estos son tus datos de ingreso:</p>
+                <ul>
+                    <li><strong>Email:</strong> ${email}</li>
+                    <li><strong>Contraseña:</strong> ${password}</li>
+                </ul>
+                <p style="margin-top: 20px;">
+                    👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                        Accedé a ChiquiCoins
+                    </a>
+                </p>
+                <p style="color: #888; font-size: 12px; text-transform: uppercase;">Este mensaje es automático. No responder.</p>
+            </div>
+        `;
+
+        res.send(htmlContent);
+
+    } catch (error) {
+        console.error('Error al generar vista del mail:', error);
+        res.status(500).send('Error al mostrar el contenido del mail');
+    }
+});
+
+router.post('/sendMail/:id', async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'ID inválido' });
+    }
+
+    try {
+        const [userRows] = await pool.query('SELECT nombre, apellido, password, email FROM usuarios WHERE id = ?', [id]);
+        if (userRows.length === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        const { nombre, apellido, email, password } = userRows[0];
+
+        const mailOptions = {
+            from: 'coinschiqui@gmail.com',
+            to: email,
+            subject: '👋 Tus datos de acceso a la plataforma',
+            html: `
+                <p>Hola ${nombre} ${apellido},</p>
+                <p>Estos son tus datos de ingreso:</p>
+                <ul>
+                    <li><strong>Email:</strong> ${email}</li>
+                    <li><strong>Contraseña:</strong> ${password}</li>
+                </ul>
+                <p>
+                    👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                        Accede a ChiquiCoins
+                    </a>
+                </p>
+                <p style="color: #888; font-size: 12px; text-transform: uppercase;">Este mensaje es automático. No responder.</p>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.redirect(`/email/${id}`);
+
+    } catch (error) {
+        console.error('Hubo un error al enviar el mail:', error);
+        res.status(500).json({ error: 'Hubo un error al enviar el mail' });
+    }
+});
+
+
 export default router;

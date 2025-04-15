@@ -1,5 +1,15 @@
 <main id="main" class="main">
     <section class="adminSection">
+        <nav class="navegacion">
+            <ul class="listaNav">
+                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin">Volver al
+                        perfil</a></li>
+                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a>
+                </li>
+                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/detail">Detalle General</a>
+                </li>
+            </ul>
+        </nav>
         <h1 class="tituloSection">Listado de Usuarios</h1>
 
         <form action="/adminUser" method="GET" class="filtrosUsuarios">
@@ -59,13 +69,5 @@
                 {{/each}}
             </tbody>
         </table>
-        <nav class="navegacion">
-            <ul class="listaNav">
-                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin">Volver al
-                        perfil</a></li>
-                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a>
-                </li>
-            </ul>
-        </nav>
     </section>
 </main>

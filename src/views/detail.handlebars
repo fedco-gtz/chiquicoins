@@ -130,7 +130,18 @@
     </style>
 </head>
 
-<body class="main">
+<body class="main" id="main">
+    <nav class="navegacion">
+        <ul class="listaNav">
+            <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin/{{id}}">Volver
+                    al perfil</a></li>
+            <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a>
+            </li>
+            <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminUser">Administrar
+                    Estudiantes</a>
+            </li>
+        </ul>
+    </nav>
     <section class="adminSection">
         <h1 class="tituloSection">Detalle de ChiquiCoins</h1>
         <form method="POST" action="/detail">
@@ -171,7 +182,7 @@
         {{/if}}
 
         {{#if estudiantes.length}}
-        <p class="mensaje">Totales en 
+        <p class="mensaje">Totales en
             {{#each estudiantes}}
             {{#if @first}}{{this.curso}}° año{{/if}}
             {{/each}}

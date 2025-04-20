@@ -721,21 +721,21 @@ body {
             .main {
                 .seccionRegistrarse {
                     width: 95% !important;
-                    padding: 10px 10px;
+                    padding: 10px 10px !important;
 
                     .tituloRegistrarse {
-                        font-size: 2rem;
+                        font-size: 2rem !important;
                     }
 
                     .formRegistro {
-                        width: 100%;
-                        text-align: center;
+                        width: 100% !important;
+                        text-align: center !important;
 
                         input:not(.check, .boton),
                         select {
-                            width: 80%;
-                            height: 35px;
-                            font-size: 1rem;
+                            width: 80% !important;
+                            height: 35px !important;
+                            font-size: 1rem !important;
                         }
 
                         .botonRegistro {

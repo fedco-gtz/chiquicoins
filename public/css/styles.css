@@ -1590,43 +1590,31 @@ input[type="number"] {
 
 /* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
-    .tableProfile {
-        width: 100%;
-        display: block;
-        overflow-x: auto;
-        box-sizing: border-box;
+
+    .container {
+        padding: 10px;
+        max-width: 90%;
     }
 
-    .tableProfile table {
-        width: 100%;
-        min-width: 100%;
-        table-layout: auto;
+    .tableProfile {
+        font-size: 16px;
     }
 
     .tableProfile th,
     .tableProfile td {
-        display: block;
-        width: 100%;
-        font-size: 1rem;
-        text-align: left;
-        padding: 10px;
-        box-sizing: border-box;
-        white-space: nowrap;
+        font-size: 16px;
+        padding: 8px;
     }
 
     .tableProfile td .inputProfile {
-        font-size: 1rem;
+        font-size: 16px;
         width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        word-break: break-word;
     }
 
     .tableProfile td a {
-        font-size: 1rem;
         margin-left: 0;
-        display: inline-block;
-        margin-top: 8px;
+        display: block;
+        margin-top: 5px;
     }
 
     .productosTable .botonModificar,

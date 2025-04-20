@@ -1590,11 +1590,37 @@ input[type="number"] {
 
 /* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-        max-width: 100%;
+    .tableProfile {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        box-sizing: border-box;
     }
-    
+
+    .tableProfile table {
+        width: 100%;
+        min-width: 600px; /* Previene el colapso de columnas */
+    }
+
+    .tableProfile th,
+    .tableProfile td {
+        font-size: 1rem;
+        padding: 8px;
+        white-space: nowrap; /* Evita que el texto baje de línea */
+    }
+
+    .tableProfile td .inputProfile {
+        font-size: 1rem;
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tableProfile td a {
+        margin-left: 5px;
+        font-size: 1rem;
+        width: auto;
+    }
     .productosTable .botonModificar,
     .botonModificar,
     .botonEliminar,

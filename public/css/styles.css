@@ -1633,4 +1633,8 @@ input[type="number"] {
         max-width: 300px;
         text-align: center;
     }
+
+    .botonEnviar {
+        padding: 0 !important;
+    }
 }

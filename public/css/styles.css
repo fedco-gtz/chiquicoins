@@ -1562,17 +1562,16 @@ input[type="number"] {
 .botonModificar,
 .botonEliminar,
 .botonEnviar {
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0 16px; /* Solo padding horizontal */
-    margin: 10px auto;
-    display: block;
-    width: 90%;
-    max-width: 300px;
-    text-align: center;
-    height: 50px; /* Altura fija */
-    line-height: 50px; /* Centra el texto verticalmente */
-    box-sizing: border-box;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 20px;
+    justify-content: center;
 }
 
 .botonEliminar {
@@ -1626,8 +1625,8 @@ input[type="number"] {
     .botonEliminar,
     .botonEnviar {
         font-size: 1rem;
-        font-weight: bold;
         padding: 10px;
+        font-weight: bold;
         margin: 10px auto;
         display: block;
         width: 90%;

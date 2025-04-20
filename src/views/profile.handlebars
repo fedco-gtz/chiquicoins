@@ -46,8 +46,10 @@
             <button class="botonModificar" type="submit">Guardar Cambios</button>
         </form>
 
-        <button class="botonEnviar" type="submit"><a class="botonEnviar" href="/profileUser/{{id}}">Volver</a></button>
-
+        <form>
+            <button class="botonEnviar" type="submit"><a class="botonEnviar"
+                    href="/profileUser/{{id}}">Volver</a></button>
+        </form>
         <form action="/profile/{{id}}/delete" method="POST" onsubmit="return handleDeleteProfile(event, '{{id}}');">
             <button class="botonEliminar" type="submit">Darse de baja</button>
         </form>
@@ -89,26 +91,4 @@
             return false;
         }
     </script>
-    <style>
-        .saveChanges {
-            background-color: #4CAF50;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-
-        .saveChanges:hover {
-            opacity: 0.8;
-            background-color: #4CAF50;
-        }
-
-        .deleteProfile {
-            background-color: #f44336;
-            color: #ffffff;
-        }
-
-        .deleteProfile:hover {
-            opacity: 0.8;
-            background-color: #f44336;
-        }
-    </style>
 </body>

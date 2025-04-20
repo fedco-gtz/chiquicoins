@@ -1622,11 +1622,19 @@ input[type="number"] {
 
     .productosTable .botonModificar,
     .botonModificar,
-    .botonEliminar,
-    .botonEnviar {
+    .botonEliminar {
         font-size: 1rem;
         padding: 10px;
         margin: 10px auto;
+        display: block;
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .botonEnviar {
+        font-size: 1rem;
+        padding: 10px;
         display: block;
         width: 90%;
         max-width: 300px;

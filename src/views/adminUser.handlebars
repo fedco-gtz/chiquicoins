@@ -59,7 +59,7 @@
                     {{#each usuarios}}
                     <tr>
                         <td>{{apellido}}, {{nombre}}</td>
-                        <td>{{email}}</td>
+                        <td class="selectedEmail">{{email}}</td>
 
                         <td>
                             <form action="/userAdmin/modifyRole/{{id}}" method="POST">

@@ -1248,3 +1248,43 @@ input[type="number"] {
     align-items: center;
     gap: 10px;
 }
+
+/* Media query para pantallas de hasta 768px */
+@media (max-width: 768px) {
+    .selectedEmail {
+        display: none;
+    }
+    
+    .botonMail {
+        width: 100%;
+        max-width: 300px;
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .botonModificar {
+        width: 100%;
+        max-width: 300px;
+        font-size: 1rem;
+        padding: 10px;
+        margin: 10px auto;
+        display: block;
+        text-align: center;
+    }
+
+    .quitarFiltro {
+        width: 100%;
+        max-width: 250px;
+        font-size: 1rem;
+        padding: 8px;
+        margin: 10px auto;
+        display: block;
+        text-align: center;
+    }
+
+    .filtroGrupo {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}

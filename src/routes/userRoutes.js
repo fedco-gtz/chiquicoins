@@ -189,6 +189,7 @@ router.get('/adminUser', async (req, res) => {
         if (condiciones.length > 0) {
             consulta += ` WHERE ` + condiciones.join(' AND ');
         }
+        consulta += ` ORDER BY u.apellido`;
         const [rows] = await pool.query(consulta, valores);
         const usuarios = rows.map(usuario => ({
             id: usuario.id,

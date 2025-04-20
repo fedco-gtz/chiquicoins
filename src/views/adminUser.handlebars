@@ -1,73 +1,225 @@
-<main id="main" class="main">
-    <section class="adminSection">
-        <nav class="navegacion">
-            <ul class="listaNav">
-                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin">Volver al
-                        perfil</a></li>
-                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a>
-                </li>
-                <li class="listaItem"><a class="linkNav administradorPeliculas" href="/detail">Detalle General</a>
-                </li>
-            </ul>
-        </nav>
-        <h1 class="tituloSection">Listado de Usuarios</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
 
-        <form action="/adminUser" method="GET" class="filtrosUsuarios">
-            <div class="filtroGrupo">
-                <span class="filtro">Filtrar por Colegio:</span>
-                <button type="submit" name="colegio" value="Thomas Jefferson" class="botonFiltro">Thomas
-                    Jefferson</button>
-                <button type="submit" name="colegio" value="Sarmiento" class="botonFiltro">Sarmiento</button>
-            </div>
+        .formulario {
+            margin: 0 auto 20px auto;
+            width: 37%;
+            background-color: rgb(42, 42, 42);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
 
-            <div class="filtroGrupo">
-                <span>Filtrar por Curso:</span>
-                <button type="submit" name="curso" value="1" class="botonFiltro">Primero</button>
-                <button type="submit" name="curso" value="2" class="botonFiltro">Segundo</button>
-                <button type="submit" name="curso" value="3" class="botonFiltro">Tercero</button>
-                <button type="submit" name="curso" value="4" class="botonFiltro">Cuarto</button>
-                <button type="submit" name="curso" value="5" class="botonFiltro">Quinto</button>
-                <button type="submit" name="curso" value="6" class="botonFiltro">Sexto</button>
-            </div>
-            <div class="filtroGrupo">
-                <a href="/adminUser" class="quitarFiltros">Quitar filtro</a>
-            </div>
-        </form>
+        .etiqueta {
+            margin-right: 10px;
+            font-weight: bold;
+        }
 
-        <table class="productosTable">
-            <thead>
-                <tr>
-                    <th>Nombre y Apellido</th>
-                    <th>E-mail</th>
-                    <th>Modificar Rol</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each usuarios}}
-                <tr>
-                    <td>{{nombre}} {{apellido}}</td>
-                    <td>{{email}}</td>
+        .mensaje {
+            margin-top: 20px;
+            font-style: italic;
+            color: #F1FF83;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-                    <td>
-                        <form action="/userAdmin/modifyRole/{{id}}" method="POST">
-                            <select name="role" class="formUser">
-                                <option value="1" {{#if (role_is_user)}}selected{{/if}}>Estudiante</option>
-                                <option value="2" {{#if (role_is_admin)}}selected{{/if}}>Profesor</option>
-                            </select>
-                            <br>
-                            <button type="submit" class="botonModificar">Modificar</button>
-                        </form>
-                        <form action="/sendMail/{{id}}" method="POST">
-                            <button type="submit" class="botonMail">Enviar Mail</button>
-                        </form>
-                    </td>
-                </tr>
-                {{else}}
-                <tr>
-                    <td colspan="5">No se encontraron usuarios.</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </section>
-</main>
+        .seleccion {
+            margin-right: 20px;
+            padding: 5px;
+            border-radius: 30px;
+            border: solid 2px #ffb183;
+        }
+
+        .filtrar {
+            padding: 6px 12px;
+            background-color: #171717;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .filtrar:hover {
+            cursor: pointer;
+            background-color: #F1FF83;
+            color: #171717;
+        }
+
+        .tabla {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #171717;
+            text-align: left;
+            color: #171717;
+            text-align: center;
+        }
+
+        th {
+            background-color: #F1FF83;
+            color: #171717;
+            justify-content: center;
+            align-items: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .botonMail {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .botonMail:hover {
+            opacity: 0.8;
+        }
+
+        .selected {
+            display: none;
+        }
+
+        .quitarFiltro {
+            padding: 6px 12px;
+            background-color: #171717;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .quitarFiltro:hover {
+            cursor: pointer;
+            background-color: #F1FF83;
+            color: #171717;
+        }
+
+        .filtroGrupo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="main" class="main">
+        <section class="adminSection">
+            <nav class="navegacion">
+                <ul class="listaNav">
+                    <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin">Volver al
+                            perfil</a></li>
+                    <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminMovie">Asignar Coins</a>
+                    </li>
+                    <li class="listaItem"><a class="linkNav administradorPeliculas" href="/detail">Detalle General</a>
+                    </li>
+                </ul>
+            </nav>
+            <h1 class="tituloSection">Listado de Usuarios</h1>
+
+            <form action="/adminUser" method="GET" class="formulario">
+                <div class="filtroGrupo">
+                    <label for="colegio" class="etiqueta">Colegio:</label>
+                    <select name="colegio" id="colegio" class="seleccion">
+                        <option value="" class="selected">Colegio</option>
+                        <option value="Sarmiento">Sarmiento</option>
+                        <option value="Thomas Jefferson">Thomas Jefferson</option>
+                    </select>
+                </div>
+
+                <div class="filtroGrupo">
+                    <label for="curso" class="etiqueta">Curso:</label>
+                    <select name="curso" id="curso" class="seleccion">
+                        <option value="" class="selected">Curso</option>
+                        <option value="1">Primero</option>
+                        <option value="2">Segundo</option>
+                        <option value="3">Tercero</option>
+                        <option value="4">Cuarto</option>
+                        <option value="5">Quinto</option>
+                        <option value="6">Sexto</option>
+                    </select>
+                </div>
+
+                <div class="filtroGrupo">
+                    <button type="submit" class="filtrar">Filtrar</button>
+                    <a href="/adminUser" class="quitarFiltro">Quitar filtro</a>
+                </div>
+            </form>
+
+            <table class="tabla">
+                <thead>
+                    <tr>
+                        <th>Nombre y Apellido</th>
+                        <th>E-mail</th>
+                        <th>Modificar Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each usuarios}}
+                    <tr>
+                        <td>{{apellido}}, {{nombre}}</td>
+                        <td>{{email}}</td>
+
+                        <td>
+                            <form action="/userAdmin/modifyRole/{{id}}" method="POST">
+                                <select name="role" class="formUser">
+                                    <option value="1" {{#if (role_is_user)}}selected{{/if}}>Estudiante</option>
+                                    <option value="2" {{#if (role_is_admin)}}selected{{/if}}>Profesor</option>
+                                </select>
+                                <br>
+                                <button type="submit" class="botonModificar">Modificar</button>
+                            </form>
+                            <form action="/sendMail/{{id}}" method="POST">
+                                <button type="submit" class="botonMail">Enviar Mail</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="5">No se encontraron usuarios.</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>

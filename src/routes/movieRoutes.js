@@ -268,8 +268,8 @@ router.post('/detail', async (req, res) => {
         const totalEstudiantes = estudiantes.length;
         const totalMonedas = estudiantes.reduce((sum, est) => sum + parseInt(est.monedas_ganadas), 0);
 
-        const [colegios] = await pool.query('SELECT DISTINCT colegio FROM usuarios ORDER BY colegio');
-        const [cursos] = await pool.query('SELECT DISTINCT curso FROM usuarios ORDER BY curso');
+        const [colegios] = await pool.query('SELECT DISTINCT colegio FROM usuarios WHERE role_id = 1 ORDER BY colegio');
+        const [cursos] = await pool.query('SELECT DISTINCT curso FROM usuarios WHERE role_id = 1 ORDER BY curso');
 
         res.render('detail', {
             estudiantes,

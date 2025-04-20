@@ -831,6 +831,7 @@ body {
     .mainUser .navegacion .listaNav {
         flex-direction: column;
         row-gap: 10px;
+        margin:10px;
     }
 
     .mainUser .navegacion .listaNav .listaItem {

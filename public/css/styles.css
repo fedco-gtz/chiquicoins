@@ -4,6 +4,11 @@
 /* 3- Footer */
 /* 4- Main */
 /* 5- Registro y Login */
+/* 6- Administrador */
+/*    a. Asignar Coins */
+/*    b. */
+/*    c. */
+/* 7- Usuario */
 
 /* ----------------------------------------------- */
 /* BÁSICO */
@@ -831,7 +836,6 @@ body {
     .mainUser .navegacion .listaNav {
         flex-direction: column;
         row-gap: 10px;
-        margin:10px;
     }
 
     .mainUser .navegacion .listaNav .listaItem {
@@ -856,8 +860,241 @@ body {
     }
 }
 
+/* Asignar Coins */
+.formulario {
+    margin: 0 auto 20px auto;
+    width: 37%;
+    background-color: rgb(42, 42, 42);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
 
+.etiqueta {
+    margin-right: 10px;
+    font-weight: bold;
+}
 
+.mensaje {
+    margin-top: 20px;
+    font-style: italic;
+    color: #F1FF83;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seleccion {
+    margin-right: 20px;
+    padding: 5px;
+    border-radius: 30px;
+    border: solid 2px #ffb183;
+}
+
+.filtrar {
+    padding: 6px 12px;
+    background-color: #171717;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.filtrar:hover {
+    cursor: pointer;
+    background-color: #F1FF83;
+    color: #171717;
+}
+
+.button-plus {
+    padding: 6px 12px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: solid 3px #4CAF50;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.button-plus:hover {
+    background-color: #ffffff;
+    color: #4CAF50;
+    cursor: pointer;
+}
+
+.button-minus {
+    padding: 6px 12px;
+    background-color: #d9534f;
+    color: #ffffff;
+    border: solid 3px #d9534f;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.button-minus:hover {
+    background-color: #ffffff;
+    color: #d9534f;
+    cursor: pointer;
+}
+
+.number {
+    font-weight: bold;
+    font-size: 19px;
+    border: none;
+    background-color: transparent;
+    width: 35px;
+    text-decoration: none;
+    text-align: center;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+
+.formularioTabla {
+    width: 100%;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #171717;
+    text-align: left;
+    color: #171717;
+    text-align: center;
+}
+
+th {
+    background-color: #F1FF83;
+    color: #171717;
+    justify-content: center;
+    align-items: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.botonMail {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 32px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.botonMail:hover {
+    opacity: 0.8;
+}
+
+/* Media query para pantallas de hasta 768px */
+@media (max-width: 768px) {
+    .formulario {
+        width: 90%;
+        flex-direction: column;
+        padding: 20px 15px;
+        font-size: 1rem;
+        gap: 15px;
+    }
+
+    .etiqueta {
+        margin-right: 0;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .mensaje {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .seleccion {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .filtrar {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .button-plus,
+    .button-minus {
+        font-size: 1rem;
+        padding: 6px 10px;
+        width: 100%;
+    }
+
+    .number {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    input[type="number"] {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .formularioTabla {
+        overflow-x: auto;
+    }
+
+    .tabla {
+        font-size: 1rem;
+        min-width: 600px;
+    }
+
+    .tabla th,
+    .tabla td {
+        padding: 8px;
+    }
+
+    .botonMail {
+        font-size: 24px;
+        width: 100%;
+        padding: 10px;
+    }
+}
 
 
 

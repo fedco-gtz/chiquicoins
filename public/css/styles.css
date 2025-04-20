@@ -1029,7 +1029,7 @@ tr:nth-child(even) {
 /* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
     .formulario {
-        width: 90%;
+        width: 95%;
         flex-direction: column;
         padding: 20px 15px;
         font-size: 1rem;
@@ -1076,17 +1076,21 @@ tr:nth-child(even) {
     }
 
     .formularioTabla {
+        width: 100%;
         overflow-x: auto;
     }
 
     .tabla {
-        font-size: 1rem;
-        min-width: 600px;
+        width: 100%;
+        font-size: 0.9rem;
+        table-layout: fixed;
+        word-wrap: break-word;
     }
 
     .tabla th,
     .tabla td {
-        padding: 8px;
+        padding: 6px;
+        font-size: 0.9rem;
     }
 
     .botonMail {

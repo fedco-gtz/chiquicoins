@@ -1590,53 +1590,46 @@ input[type="number"] {
 
 /* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
-
-    .separador {
-        margin-top: 50px !important;
-    }
-
-
-    .formUser {
-        font-size: 18px;
-        width: 100%;
-        text-align: center;
-    }
-
     .container {
-        padding: 10px;
-        max-width: 90%;
+        padding: 15px;
+        max-width: 100%;
     }
 
     .tableProfile {
-        font-size: 16px;
+        font-size: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        display: block;
     }
 
     .tableProfile th,
     .tableProfile td {
-        font-size: 16px;
+        font-size: 1rem;
         padding: 8px;
     }
 
-    .tableProfile td .inputProfile {
-        font-size: 16px;
-        width: 100%;
-    }
-
     .tableProfile td a {
-        margin-left: 0;
-        display: block;
-        margin-top: 5px;
+        margin-left: 5px;
+        font-size: 1rem;
     }
 
-    .button-group {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-    }
-
-    .button {
+    .tableProfile td .inputProfile {
+        font-size: 1rem;
+        padding: 8px;
         width: 100%;
+        box-sizing: border-box;
+    }
+
+    .productosTable .botonModificar,
+    .botonModificar,
+    .botonEliminar,
+    .botonEnviar {
+        font-size: 1rem;
         padding: 10px;
-        font-size: 16px;
+        margin: 10px auto;
+        display: block;
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
     }
 }

@@ -1599,28 +1599,36 @@ input[type="number"] {
 
     .tableProfile table {
         width: 100%;
-        min-width: 600%;
+        min-width: 100%;
+        table-layout: auto;
     }
 
     .tableProfile th,
     .tableProfile td {
+        display: block;
+        width: 100%;
         font-size: 1rem;
-        padding: 8px;
+        text-align: left;
+        padding: 10px;
+        box-sizing: border-box;
         white-space: nowrap;
     }
 
     .tableProfile td .inputProfile {
         font-size: 1rem;
-        padding: 8px;
         width: 100%;
+        padding: 10px;
         box-sizing: border-box;
+        word-break: break-word;
     }
 
     .tableProfile td a {
-        margin-left: 5px;
         font-size: 1rem;
-        width: auto;
+        margin-left: 0;
+        display: inline-block;
+        margin-top: 8px;
     }
+
     .productosTable .botonModificar,
     .botonModificar,
     .botonEliminar,
@@ -1639,3 +1647,4 @@ input[type="number"] {
         padding: 0 !important;
     }
 }
+

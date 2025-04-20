@@ -1590,10 +1590,9 @@ input[type="number"] {
 
 /* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
-
     .container {
         padding: 10px;
-        max-width: 90%;
+        max-width: 80%;
     }
 
     .tableProfile {

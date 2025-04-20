@@ -608,147 +608,150 @@ body {
     background: linear-gradient(to right top, #24242473, #24242473), url(../images/pages/bg-register.png);
     background-size: cover;
     background-position: center;
+}
 
-    .headerRegistrarse {
-        color: #ffffff;
-        height: 8vh;
-        padding: 30px;
+.bodyRegistrarse .headerRegistrarse {
+    color: #ffffff;
+    height: 8vh;
+    padding: 30px;
+}
 
-        .anclaLogo {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1.2rem;
+.bodyRegistrarse .headerRegistrarse .anclaLogo {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
 
-            &:hover {
-                animation: tilt-n-move-shaking 0.25s infinite;
-            }
-        }
+.bodyRegistrarse .headerRegistrarse .anclaLogo:hover {
+    animation: tilt-n-move-shaking 0.25s infinite;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse {
+    background-color: rgb(42, 42, 42);
+    width: 30%;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    font-size: 1.2rem;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .tituloRegistrarse {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro {
+    width: 100%;
+    padding: 40px;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro input:not(.check):not(.boton),
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro select {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 0px 20px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    border: 2px solid #F1FF83;
+    background-color: #333333;
+    outline: none;
+    color: rgb(255, 255, 255);
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro .error-text,
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro .error-message {
+    color: #ff0000;
+    font-size: 1.2rem;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro .botonRegistro {
+    width: 87% !important;
+    box-sizing: content-box !important;
+    background-color: #F1FF83 !important;
+    border: 2px solid #F1FF83 !important;
+    color: #171717 !important;
+    padding: 1rem 1rem !important;
+    border-radius: 5px !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro .botonRegistro:hover {
+    background-color: #171717 !important;
+    border: 2px solid #171717 !important;
+    color: #F1FF83 !important;
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro .ayuda {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #787878;
+    font-weight: bold;
+}
+
+.bodyRegistrarse .main .seccionRegistrarse .formRegistro .ayuda:hover {
+    color: #F1FF83;
+}
+
+/* MEDIA QUERY PARA PANTALLAS DE HASTA 768px */
+@media (max-width: 768px) {
+    .bodyRegistrarse .headerRegistrarse {
+        padding: 20px !important;
     }
 
-    .main {
-        .seccionRegistrarse {
-            background-color: rgb(42, 42, 42);
-            width: 30%;
-            margin: 0 auto;
-            border-radius: 5px;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 90vh;
-            font-size: 1.2rem;
-
-            .tituloRegistrarse {
-                font-size: 2.5rem;
-                font-weight: 700;
-                margin-bottom: 20px;
-            }
-
-            .formRegistro {
-                width: 100%;
-                padding: 40px;
-
-                input:not(.check, .boton),
-                select {
-                    width: 100%;
-                    margin-bottom: 10px;
-                    height: 40px;
-                    padding: 0px 20px;
-                    font-size: 1.2rem;
-                    border-radius: 20px;
-                    border: 2px solid #F1FF83;
-                    background-color: #333333;
-                    outline: none;
-                    color: rgb(255, 255, 255);
-                }
-
-                .error-text,
-                .error-message {
-                    color: #ff0000;
-                    font-size: 1.2rem;
-                    margin-top: 0px;
-                    margin-bottom: 10px;
-                }
-
-                .botonRegistro {
-                    width: 87% !important;
-                    box-sizing: content-box !important;
-                    background-color: #F1FF83 !important;
-                    border: 2px solid #F1FF83 !important;
-                    color: #171717 !important;
-                    padding: 1rem 1rem !important;
-                    border-radius: 5px !important;
-                    font-size: 1.5rem !important;
-                    font-weight: bold !important;
-
-                    &:hover {
-                        background-color: #171717 !important;
-                        border: 2px solid #171717 !important;
-                        color: #F1FF83 !important;
-                        transform: scale(0.95);
-                        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-                    }
-                }
-
-                .ayuda {
-                    margin-top: 40px;
-                    font-size: 1.5rem;
-                    text-decoration: none;
-                    color: #787878;
-                    font-weight: bold;
-
-                    &:hover {
-                        color: #F1FF83;
-
-                    }
-                }
-            }
-        }
+    .bodyRegistrarse .headerRegistrarse .anclaLogo {
+        font-size: 1rem !important;
     }
 
-    @media (max-width: 768px) {
-        .bodyRegistrarse {
-            .headerRegistrarse {
-                padding: 20px !important;
+    .bodyRegistrarse .main .seccionRegistrarse {
+        width: 95% !important;
+        padding: 20px 15px !important;
+        height: auto;
+    }
 
-                .anclaLogo {
-                    font-size: 1rem !important;
-                }
-            }
+    .bodyRegistrarse .main .seccionRegistrarse .tituloRegistrarse {
+        font-size: 2rem !important;
+        text-align: center;
+    }
 
-            .main {
-                .seccionRegistrarse {
-                    width: 95% !important;
-                    padding: 10px 10px !important;
+    .bodyRegistrarse .main .seccionRegistrarse .formRegistro {
+        width: 100% !important;
+        padding: 20px 0px !important;
+        text-align: center !important;
+    }
 
-                    .tituloRegistrarse {
-                        font-size: 2rem !important;
-                    }
+    .bodyRegistrarse .main .seccionRegistrarse .formRegistro input:not(.check):not(.boton),
+    .bodyRegistrarse .main .seccionRegistrarse .formRegistro select {
+        width: 90% !important;
+        height: 35px !important;
+        font-size: 1rem !important;
+        margin: 10px auto !important;
+    }
 
-                    .formRegistro {
-                        width: 100% !important;
-                        text-align: center !important;
+    .bodyRegistrarse .main .seccionRegistrarse .formRegistro .botonRegistro {
+        margin: 20px auto;
+        width: 80%;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
 
-                        input:not(.check, .boton),
-                        select {
-                            width: 80% !important;
-                            height: 35px !important;
-                            font-size: 1rem !important;
-                        }
-
-                        .botonRegistro {
-                            margin-top: 20px;
-                            margin-bottom: 20px;
-                            width: 70%;
-                            padding: 0.8rem 0.8rem;
-                            font-size: 0.8rem;
-                        }
-                    }
-                }
-            }
-        }
+    .bodyRegistrarse .main .seccionRegistrarse .formRegistro .ayuda {
+        font-size: 1.2rem;
+        display: block;
+        margin-top: 30px;
     }
 }
 

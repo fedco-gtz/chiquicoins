@@ -1592,7 +1592,7 @@ input[type="number"] {
 @media (max-width: 768px) {
     .container {
         padding: 10px;
-        max-width: 80%;
+        max-width: 90%;
     }
 
     .tableProfile {
@@ -1603,6 +1603,10 @@ input[type="number"] {
     .tableProfile td {
         font-size: 16px;
         padding: 8px;
+    }
+
+    .tableProfile th {
+        width: 10px !important;
     }
 
     .tableProfile td .inputProfile {
@@ -1634,4 +1638,3 @@ input[type="number"] {
         padding: 0 !important;
     }
 }
-

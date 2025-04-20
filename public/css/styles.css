@@ -1594,25 +1594,27 @@ input[type="number"] {
         padding: 15px;
         max-width: 100%;
     }
-
+    
     .tableProfile {
         font-size: 1rem;
-        width: 100%;
+        width: 95%;
+        margin: 0 auto;
         overflow-x: auto;
         display: block;
+        box-sizing: border-box;
     }
-
+    
     .tableProfile th,
     .tableProfile td {
         font-size: 1rem;
         padding: 8px;
     }
-
+    
     .tableProfile td a {
         margin-left: 5px;
         font-size: 1rem;
     }
-
+    
     .tableProfile td .inputProfile {
         font-size: 1rem;
         padding: 8px;

@@ -33,11 +33,12 @@
                 </tr>
                 <tr>
                     <th>Colegio</th>
-                    <td><input class="inputProfile" id="colegio" type="email" name="colegio" value="{{ colegio }}" readonly>
+                    <td><input class="inputProfile" id="colegio" type="email" name="colegio" value="{{ colegio }}"
+                            readonly>
                     </td>
                 </tr>
                 <tr>
-                    <th>Colegio</th>
+                    <th>Curso</th>
                     <td><input class="inputProfile" id="curso" type="email" name="curso" value="{{ curso }}" readonly>
                     </td>
                 </tr>
@@ -47,8 +48,7 @@
 
         <button class="botonEnviar" type="submit"><a class="botonEnviar" href="/profileUser/{{id}}">Volver</a></button>
 
-        <form action="/profile/{{id}}/delete" method="POST"
-            onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');">
+        <form action="/profile/{{id}}/delete" method="POST" onsubmit="return handleDeleteProfile(event, '{{id}}');">
             <button class="botonEliminar" type="submit">Darse de baja</button>
         </form>
     </div>
@@ -75,6 +75,19 @@
                 checkbox.checked = false;
             }
         }
+
+        function handleDeleteProfile(event, userId) {
+            const confirmation = confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');
+
+            if (confirmation) {
+                localStorage.removeItem('email');
+                localStorage.removeItem('password');
+
+                return true;
+            }
+
+            return false;
+        }
     </script>
     <style>
         .saveChanges {
@@ -97,6 +110,5 @@
             opacity: 0.8;
             background-color: #f44336;
         }
-
     </style>
 </body>

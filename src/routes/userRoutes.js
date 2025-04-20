@@ -427,7 +427,6 @@ router.post('/profile/:id/delete', async (req, res) => {
 
         await transporter.sendMail(mailOptions);
 
-        // Eliminar registros asociados y al usuario
         await pool.query('DELETE FROM catalogo WHERE usuario_id = ?', [id]);
         await pool.query('DELETE FROM usuarios WHERE id = ?', [id]);
 

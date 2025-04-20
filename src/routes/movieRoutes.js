@@ -90,7 +90,7 @@ router.post('/adminMovie', async (req, res) => {
             queryParams.push(curso);
         }
 
-        consultaUsuarios += ` ORDER BY apellido ASC`;
+        consultaUsuarios += ` ORDER BY colegio ASC, curso ASC`;
 
         const [rowsUsuarios] = await pool.query(consultaUsuarios, queryParams);
 
@@ -98,11 +98,12 @@ router.post('/adminMovie', async (req, res) => {
             id: usuario.id,
             nombre: usuario.nombre,
             apellido: usuario.apellido,
+            email: usuario.email,
             colegio: usuario.colegio,
             curso: usuario.curso
         }));
 
-        const consultaTodos = `SELECT colegio, curso FROM usuarios WHERE role_id = 1`;
+        const consultaTodos = `SELECT colegio, curso FROM usuarios WHERE role_id = 1 ORDER BY colegio ASC, curso ASC`;
         const [todosUsuarios] = await pool.query(consultaTodos);
 
         const colegiosUnicos = [...new Set(todosUsuarios.map(u => u.colegio))].map(c => ({
@@ -119,7 +120,7 @@ router.post('/adminMovie', async (req, res) => {
             usuarios,
             colegios: colegiosUnicos,
             cursos: cursosUnicos,
-            mostrarMensaje:false
+            mostrarMensaje: false
         });
     } catch (error) {
         console.error('Error al filtrar los usuarios:', error);
@@ -132,6 +133,7 @@ router.post('/adminMovie/coins', async (req, res) => {
 
     try {
         const ids = new Set();
+        const correos = [];
 
         for (const key of Object.keys(body)) {
             const match = key.match(/coins_(ganados|gastados)_(\d+)/);
@@ -139,6 +141,9 @@ router.post('/adminMovie/coins', async (req, res) => {
                 ids.add(match[2]);
             }
         }
+
+        let totalGanados = 0;
+        let totalGastados = 0;
 
         for (const id of ids) {
             const ganados = parseInt(body[`coins_ganados_${id}`] || '0', 10);
@@ -153,19 +158,68 @@ router.post('/adminMovie/coins', async (req, res) => {
                  VALUES (?, ?, ?, ?)`,
                 [uniqueId, id, ganados, gastados]
             );
+
+            const [estudiante] = await pool.query('SELECT nombre, apellido, email FROM usuarios WHERE id = ?', [id]);
+            if (estudiante.length > 0) {
+                const nombre = estudiante[0].nombre;
+                const apellido = estudiante[0].apellido;
+                const saldoDisponible = ganados - gastados; 
+
+                totalGanados += ganados; 
+                totalGastados += gastados; 
+
+                let mensaje = `
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px solid #ddd; max-width: 500px; margin: auto;">
+                    <h3 style="font-size: 20px; color: #2c3e50;">Hola <span style="color: #2980b9;">${nombre} ${apellido}</span> 👋</h3>
+  
+                    <p style="font-size: 20px; color: #333;">
+                        Te dejamos un resumen actualizado de tus ChiquiCoins 🪙:
+                    </p>
+
+                    <ul style="list-style: none; padding: 0; font-size: 18px;">
+                        <li><strong>🟢 Monedas ganadas:</strong> ${ganados}</li>
+                        <li><strong>🔴 Monedas gastadas:</strong> ${gastados}</li>
+                    </ul>
+
+                    <p style="margin-top: 20px; font-size: 18px;">
+                        👉 <a href="https://chiquicoins.onrender.com/" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+                            INGRESA EN CHIQUICOINS PARA CONOCER TU SALDO DISPONIBLE 💰
+                        </a>
+                    </p>
+
+                    <p style="font-size: 14px; margin-top: 20px; font-weight: bold; color: #2c3e50;">Gracias por seguir usando ChiquiCoins. ¡Seguimos creciendo juntos! 🚀</p>
+                    <p style="font-size: 14px; color:rgb(56, 55, 55); text-transform: uppercase;">*Este mensaje fue enviado automáticamente. No responder.</p>
+                </div>
+                `;
+
+                const mailOptions = {
+                    from: process.env.EMAIL_USER,
+                    to: estudiante[0].email,
+                    subject: '🪙 Resumen de tus ChiquiCoins',
+                    html: mensaje
+                };
+
+                try {
+                    await transporter.sendMail(mailOptions);
+                } catch (error) {
+                    console.error(`Error al enviar correo a ${estudiante[0].email}:`, error);
+                    res.status(500).json({ error: `Error al enviar correo a ${estudiante[0].email}`, details: error });
+                    return;
+                }
+            }
         }
 
         res.redirect('/adminMovie');
     } catch (error) {
         console.error('Error al asignar ChiquiCoins:', error);
-        res.status(500).json({ error: 'Error al asignar ChiquiCoins' });
+        res.status(500).json({ error: 'Hubo un error al asignar ChiquiCoins', details: error.message });
     }
 });
 
 router.get('/detail', async (req, res) => {
     try {
-        const [colegios] = await pool.query('SELECT DISTINCT colegio FROM usuarios ORDER BY colegio');
-        const [cursos] = await pool.query('SELECT DISTINCT curso FROM usuarios ORDER BY curso');
+        const [colegios] = await pool.query('SELECT DISTINCT colegio FROM usuarios WHERE role_id = 1 ORDER BY colegio');
+        const [cursos] = await pool.query('SELECT DISTINCT curso FROM usuarios WHERE role_id = 1 ORDER BY curso');
 
         res.render('detail', {
             estudiantes: [],

@@ -3,9 +3,10 @@
 /* 2- Header */
 /* 3- Footer */
 /* 4- Main */
+/* 5- Registro y Login */
 
-/* 4- Registro */
-
+/* ----------------------------------------------- */
+/* BÁSICO */
 * {
     margin: 0;
     padding: 0;
@@ -35,17 +36,17 @@
     }
 }
 
-/* WIDTH */
+/* Width */
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* TRACK */
+/* Track */
 ::-webkit-scrollbar-track {
     background: rgb(23, 23, 23);
 }
 
-/* HANDLE */
+/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #F1FF83;
 }
@@ -61,6 +62,7 @@ body {
     color: white;
 }
 
+/* ----------------------------------------------- */
 /* HEADER */
 .header {
     background-color: #171717;
@@ -130,7 +132,7 @@ body {
     color: #171717;
 }
 
-/* MEDIA QUERY PARA PANTALLAS DE HASTA 768px */
+/* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
     .header {
         height: initial;
@@ -160,6 +162,7 @@ body {
     }
 }
 
+/* ----------------------------------------------- */
 /* FOOTER */
 .footer {
     padding: 20px;
@@ -216,7 +219,7 @@ body {
     font-size: 14px;
 }
 
-/* MEDIA QUERY PARA PANTALLAS DE HASTA 768px */
+/* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
     .footer {
         height: initial;
@@ -238,6 +241,7 @@ body {
     }
 }
 
+/* ----------------------------------------------- */
 /* MAIN */
 .main .sectionPrincipal {
     color: white;
@@ -490,7 +494,7 @@ body {
     object-fit: cover;
 }
 
-/* MEDIA QUERY PARA PANTALLAS DE HASTA 768px */
+/* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
     .main .sectionPrincipal {
         height: 60vh;
@@ -578,6 +582,7 @@ body {
     }
 }
 
+/* ----------------------------------------------- */
 /* REGISTRO Y LOGIN*/
 .bodyRegistrarse {
     height: 100vh;
@@ -682,7 +687,7 @@ body {
     color: #F1FF83;
 }
 
-/* MEDIA QUERY PARA PANTALLAS DE HASTA 768px */
+/* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
     .bodyRegistrarse .headerRegistrarse {
         padding: 20px !important;
@@ -730,6 +735,136 @@ body {
         margin-top: 30px;
     }
 }
+
+/* ----------------------------------------------- */
+/* ADMINISTRADOR */
+.mainUser {
+    color: #ffffff;
+    background: linear-gradient(to right top, #0000008a, #0000008a), url(../images/pages/admin-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #171717;
+    gap: 20px;
+}
+
+.mainUser .tituloPrincipal {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.mainUser .navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainUser .navegacion .listaNav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.mainUser .navegacion .listaNav .listaItem {
+    margin-left: 20px;
+}
+
+.mainUser .navegacion .listaNav .listaItem .linkNav {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.mainUser .navegacion .listaNav .listaItem .administradorPeliculas {
+    background-color: #171717;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 50px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mainUser .navegacion .listaNav .listaItem .administradorPeliculas:hover {
+    background-color: #F1FF83;
+    color: #171717;
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.formUser {
+    padding: 8px 12px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+/* Media query para pantallas de hasta 768px */
+@media (max-width: 768px) {
+    .mainUser {
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .mainUser .tituloPrincipal {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .mainUser .navegacion {
+        flex-direction: column;
+        row-gap: 15px;
+    }
+
+    .mainUser .navegacion .listaNav {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .mainUser .navegacion .listaNav .listaItem {
+        margin-left: 0;
+    }
+
+    .mainUser .navegacion .listaNav .listaItem .linkNav {
+        font-size: 1rem;
+    }
+
+    .mainUser .navegacion .listaNav .listaItem .administradorPeliculas {
+        font-size: 30px;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .formUser {
+        font-size: 1rem;
+        padding: 6px 10px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -835,77 +970,7 @@ body {
 
 /*ESTILOS ESCRITORIOS PARA PAGINA ADMINISTRADOR DE USUARIOS */
 
-.mainUser {
-    color: white;
-    background: linear-gradient(to right top, #0000008a, #0000008a), url(../images/pages/admin-bg.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    background-color: #171717;
-    color: #ffffff;
-    gap: 20px;
 
-    .tituloPrincipal {
-        font-size: 4rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .navegacion {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .listaNav {
-            list-style: none;
-            display: flex;
-            align-items: center;
-
-            .listaItem {
-                margin-left: 20px;
-
-                .linkNav {
-                    text-decoration: none;
-                    color: #ffffff;
-                    font-weight: 700;
-                    font-size: 1.2rem;
-                }
-
-                .administradorPeliculas {
-                    background-color: #171717;
-                    color: white;
-                    padding: 0.5rem 1rem;
-                    border-radius: 15px;
-                    font-size: 50px;
-
-                    &:hover {
-                        background-color: #F1FF83;
-                        color: #171717;
-                        transform: scale(0.95);
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                        border-radius: 15px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-.formUser {
-    padding: 8px 12px;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 10px;
-    justify-content: center;
-}
 
 
 /*ESTILOS PERFIL USUARIO (ESCRITORIO) */

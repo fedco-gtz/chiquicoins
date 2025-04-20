@@ -1599,14 +1599,14 @@ input[type="number"] {
 
     .tableProfile table {
         width: 100%;
-        min-width: 600px; /* Previene el colapso de columnas */
+        min-width: 600%;
     }
 
     .tableProfile th,
     .tableProfile td {
         font-size: 1rem;
         padding: 8px;
-        white-space: nowrap; /* Evita que el texto baje de línea */
+        white-space: nowrap;
     }
 
     .tableProfile td .inputProfile {

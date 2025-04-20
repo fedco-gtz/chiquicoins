@@ -80,68 +80,6 @@
 
 /*ESTILOS PERFIL USUARIO (ESCRITORIO) */
 
-.mainUserProfile {
-    color: white;
-    background: linear-gradient(to right top, #0000008a, #0000008a), url(../images/pages/user-bg.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    background-color: #171717;
-    color: #ffffff;
-    gap: 20px;
-
-    .tituloPrincipal {
-        font-size: 4rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .navegacion {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .listaNav {
-            list-style: none;
-            display: flex;
-            align-items: center;
-
-            .listaItem {
-                margin-left: 20px;
-
-                .linkNav {
-                    text-decoration: none;
-                    color: #ffffff;
-                    font-weight: 700;
-                    font-size: 1.2rem;
-                }
-
-                .administradorPeliculas {
-                    background-color: #171717;
-                    color: white;
-                    padding: 0.5rem 1rem;
-                    border-radius: 15px;
-                    font-size: 50px;
-
-                    &:hover {
-                        background-color: #F1FF83;
-                        color: #171717;
-                        transform: scale(0.95);
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                        border-radius: 15px;
-                    }
-                }
-            }
-        }
-    }
-}
-
 .formUser {
     padding: 8px 12px;
     font-size: 20px;
@@ -253,83 +191,6 @@
 /*ESTILOS PERFIL USUARIO (CELULAR Y TABLER) */
 
 @media (max-width: 768px) {
-    .mainUserProfile {
-        height: auto;
-        padding: 30px 15px;
-        gap: 15px;
-
-        .tituloPrincipal {
-            font-size: 1.6rem;
-        }
-
-        .navegacion .listaNav {
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-
-            .listaItem {
-                margin-left: 0;
-                margin-bottom: 10px;
-
-                .linkNav {
-                    font-size: 1rem;
-                }
-
-                .administradorPeliculas {
-                    font-size: 30px;
-                    padding: 0.4rem 0.8rem;
-                }
-            }
-        }
-    }
-
-    .buscadorPrincipal {
-        height: 30vh;
-
-        .tituloSection {
-            font-size: 1.6rem;
-        }
-    }
-
-    .textData {
-        font-size: 14px !important;
-    }
-
-    .coinInfo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-    }
-
-    .coinIcon {
-        width: 100px !important;
-        height: 100px !important;
-    }
-
-    .textCoin {
-        font-size: 22px !important;
-        padding: 10px !important;
-    }
-
-    .titleCoin {
-        font-size: 22px !important;
-        background-color: #4CAF50;
-        padding: 7px !important;
-        border-radius: 10px;
-        font-weight: bold;
-        color: #171717;
-    }
-
-    .coinsEarned {
-        color: #007bff;
-        font-weight: bold;
-    }
-
-    .spentCoins {
-        color: #d9534f;
-        font-weight: bold;
-    }
 
     .separador {
         margin-top: 50px !important;
@@ -512,46 +373,6 @@ hr {
 .botonFiltro:hover {
     background-color: #F1FF83;
     color: #171717;
-}
-
-.coinInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
-.coinIcon {
-    width: 300px;
-    height: 300px;
-}
-
-.textCoin {
-    font-size: 30px;
-    padding: 10px;
-}
-
-.titleCoin {
-    font-size: 36px;
-    background-color: #4CAF50;
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: #171717;
-}
-
-.coinsEarned {
-    color: #007bff;
-    font-weight: bold;
-}
-
-.spentCoins {
-    color: #d9534f;
-    font-weight: bold;
-}
-
-.textData {
-    font-size: 24px;
 }
 
 .terminos-container {

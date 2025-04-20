@@ -1390,6 +1390,63 @@ input[type="number"] {
     border-radius: 15px;
 }
 
+.buscadorPrincipal {
+    background-color: #171717;
+    color: rgb(255, 255, 255);
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buscadorPrincipal .tituloSection {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 3.5rem;
+}
+
+.textData {
+    font-size: 24px !important;
+}
+
+.coinInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.coinIcon {
+    width: 300px;
+    height: 300px;
+}
+
+.textCoin {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.titleCoin {
+    font-size: 36px;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #171717;
+}
+
+.coinsEarned {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.spentCoins {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+
 /* Media query para pantallas de hasta 768px */
 @media (max-width: 768px) {
     .mainUserProfile {
@@ -1420,5 +1477,49 @@ input[type="number"] {
     .mainUserProfile .navegacion .listaNav .listaItem .administradorPeliculas {
         font-size: 30px;
         padding: 0.4rem 0.8rem;
+    }
+
+    .buscadorPrincipal {
+        height: 30vh;
+    }
+    
+    .buscadorPrincipal .tituloSection {
+        font-size: 1.6rem;
+    }
+
+    .coinInfo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .coinIcon {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .textCoin {
+        font-size: 22px !important;
+        padding: 10px !important;
+    }
+
+    .titleCoin {
+        font-size: 22px !important;
+        background-color: #4CAF50;
+        padding: 7px !important;
+        border-radius: 10px;
+        font-weight: bold;
+        color: #171717;
+    }
+
+    .coinsEarned {
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    .spentCoins {
+        color: #d9534f;
+        font-weight: bold;
     }
 }

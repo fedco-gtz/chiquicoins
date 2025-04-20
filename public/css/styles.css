@@ -9,6 +9,7 @@
 /*    b. Administrar Estudiantes*/
 /*    c. Detalle General*/
 /* 7- Usuario */
+/*    a. Ir al Perfil */
 
 /* ----------------------------------------------- */
 /* BÁSICO */
@@ -1323,4 +1324,101 @@ input[type="number"] {
     background-color: #171717;
     color: #ddd;
     border: solid 3px #F1FF83;
+}
+
+/* ----------------------------------------------- */
+/* USUARIO */
+.mainUserProfile {
+    color: #ffffff;
+    background: linear-gradient(to right top, #0000008a, #0000008a), url(../images/pages/user-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #171717;
+    gap: 20px;
+}
+
+.mainUserProfile .tituloPrincipal {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.mainUserProfile .navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainUserProfile .navegacion .listaNav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.mainUserProfile .navegacion .listaNav .listaItem {
+    margin-left: 20px;
+}
+
+.mainUserProfile .navegacion .listaNav .listaItem .linkNav {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.mainUserProfile .navegacion .listaNav .listaItem .administradorPeliculas {
+    background-color: #171717;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 50px;
+    transition: all 0.3s ease;
+}
+
+.mainUserProfile .navegacion .listaNav .listaItem .administradorPeliculas:hover {
+    background-color: #F1FF83;
+    color: #171717;
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+/* Media query para pantallas de hasta 768px */
+@media (max-width: 768px) {
+    .mainUserProfile {
+        height: auto;
+        padding: 30px 15px;
+        gap: 15px;
+    }
+
+    .mainUserProfile .tituloPrincipal {
+        font-size: 1.6rem;
+    }
+
+    .mainUserProfile .navegacion .listaNav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .mainUserProfile .navegacion .listaNav .listaItem {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .mainUserProfile .navegacion .listaNav .listaItem .linkNav {
+        font-size: 1rem;
+    }
+
+    .mainUserProfile .navegacion .listaNav .listaItem .administradorPeliculas {
+        font-size: 30px;
+        padding: 0.4rem 0.8rem;
+    }
 }

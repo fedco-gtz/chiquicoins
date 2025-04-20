@@ -54,6 +54,17 @@ router.post('/register', async (req, res) => {
     const { nombre, apellido, email, password, colegio, curso } = req.body;
 
     try {
+        // Verificar si el email ya está registrado
+        const [resultado] = await pool.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+
+        if (resultado.length > 0) {
+            return res.render('register', {
+                error: 'Ya existe una cuenta con el e-mail ingresado',
+                isRegisterPage: true
+            });
+        }
+
+        // Si no está registrado, continuar con el registro
         const id = await generarIdUnicoUser();
         const role_id = 1;
         const consulta = `
@@ -102,8 +113,8 @@ router.post('/register', async (req, res) => {
         res.render('login', { isRegisterPage: true });
 
     } catch (error) {
-        console.error('Ya existe una cuenta con el e-mail ingresado:', error.message);
-        res.render('register', { error: 'Ya existe una cuenta con el e-mail ingresado', isRegisterPage: true });
+        console.error('Error al registrar usuario:', error.message);
+        res.render('register', { error: 'Ocurrió un error al registrarse. Intentá nuevamente.', isRegisterPage: true });
     }
 });
 

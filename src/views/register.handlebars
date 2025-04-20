@@ -32,7 +32,7 @@
                         </select>
                         <div class="error-text"></div>
                     </div>
-                        <div>
+                    <div>
                         <select name="curso" id="curso" required>
                             <option value="1">Primero</option>
                             <option value="2">Segundo</option>
@@ -57,17 +57,55 @@
         <script src="../../public/js/registrationValidation.js"></script>
 
         <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                const error = '{{error}}';
-                if (error) {
-                    const errorMessageDiv = document.getElementById('error-message');
-                    errorMessageDiv.textContent = error;
-                    errorMessageDiv.style.display = 'block';
+            document.addEventListener('DOMContentLoaded', () => {
+    const error = '{{error}}';
+    const errorMessageDiv = document.getElementById('error-message');
 
-                    setTimeout(() => {
-                        errorMessageDiv.style.display = 'none';
-                    }, 3000);
-                }
-            });
+    if (error && errorMessageDiv) {
+        errorMessageDiv.textContent = error;
+        errorMessageDiv.style.display = 'block';
+        setTimeout(() => {
+            errorMessageDiv.style.display = 'none';
+        }, 3000);
+    }
+
+    const form = document.querySelector('form');
+    const nombre = document.getElementById('nombre');
+    const apellido = document.getElementById('apellido');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const errorTexts = document.querySelectorAll('.error-text');
+
+    form.addEventListener('submit', function (event) {
+        errorTexts.forEach(errorText => errorText.textContent = '');
+        let hasError = false;
+
+        if (nombre.value.trim() === '') {
+            nombre.nextElementSibling.textContent = 'El nombre es obligatorio';
+            hasError = true;
+        }
+        if (apellido.value.trim() === '') {
+            apellido.nextElementSibling.textContent = 'El apellido es obligatorio';
+            hasError = true;
+        }
+        if (!validateEmail(email.value)) {
+            email.nextElementSibling.textContent = 'El email no es válido';
+            hasError = true;
+        }
+        if (password.value.length < 6) {
+            password.nextElementSibling.textContent = 'La contraseña debe tener al menos 6 caracteres';
+            hasError = true;
+        }
+
+        if (hasError) {
+            event.preventDefault();
+        }
+    });
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+});
         </script>
 </body>

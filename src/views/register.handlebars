@@ -1,5 +1,4 @@
 <body class="bodyRegistrarse">
-    <header class="headerRegister"></header>
     <header class="headerRegistrarse">
         <a class="anclaLogo" href="/">
             <i class="fas fa-coins" aria-hidden="true"></i>
@@ -8,33 +7,33 @@
 
         <main id="main" class="main">
             <section data-aos="zoom-in" data-aos-duration="1000" class="seccionRegistrarse">
-                <form action="/register" method="post">
+                <form class="formRegistro" action="/register" method="post">
                     <h2 class="tituloRegistrarse">Registro</h2>
                     <div>
-                        <input type="text" placeholder="Nombre" id="nombre" name="nombre">
+                        <input type="text" placeholder="Nombre" id="nombre" name="nombre" required>
                         <div class="error-text"></div>
                     </div>
                     <div>
-                        <input type="text" placeholder="Apellido" id="apellido" name="apellido">
+                        <input type="text" placeholder="Apellido" id="apellido" name="apellido" required>
                         <div class="error-text"></div>
                     </div>
                     <div>
-                        <input type="email" placeholder="Email" id="email" name="email">
+                        <input type="email" placeholder="Email" id="email" name="email" required>
                         <div class="error-text"></div>
                     </div>
                     <div>
-                        <input type="password" placeholder="Contraseña" id="password" name="password">
+                        <input type="password" placeholder="Contraseña" id="password" name="password" required>
                         <div class="error-text"></div>
                     </div>
                     <div>
-                        <select name="colegio" id="colegio">
+                        <select name="colegio" id="colegio" required>
                             <option value="Thomas Jefferson">Thomas Jefferson</option>
                             <option value="Sarmiento">Sarmiento</option>
                         </select>
                         <div class="error-text"></div>
                     </div>
                         <div>
-                        <select name="curso" id="curso">
+                        <select name="curso" id="curso" required>
                             <option value="1">Primero</option>
                             <option value="2">Segundo</option>
                             <option value="3">Tercero</option>
@@ -45,7 +44,7 @@
                         <div class="error-text"></div>
                     </div>
                     <div>
-                        <input class="boton" type="submit" value="Registrarse">
+                        <input class="botonRegistro" type="submit" value="Registrarse">
                     </div>
                     <div id="error-message" class="error-message" style="display: none;"></div>
                 </form>
@@ -71,11 +70,4 @@
                 }
             });
         </script>
-
-        <style>
-            .error-message {
-                color: red;
-                margin-top: 10px;
-            }
-        </style>
 </body>

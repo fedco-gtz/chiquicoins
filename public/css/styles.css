@@ -300,6 +300,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top:20px;
+
 }
 
 .buscadorPrincipal .tituloSection {
@@ -1390,24 +1392,8 @@ input[type="number"] {
     border-radius: 15px;
 }
 
-.buscadorPrincipal {
-    background-color: #171717;
-    color: rgb(255, 255, 255);
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.buscadorPrincipal .tituloSection {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-top: 3.5rem;
-}
-
 .textData {
-    font-size: 24px !important;
+    font-size: 24px;
 }
 
 .coinInfo {
@@ -1479,14 +1465,6 @@ input[type="number"] {
         padding: 0.4rem 0.8rem;
     }
 
-    .buscadorPrincipal {
-        height: 30vh;
-    }
-    
-    .buscadorPrincipal .tituloSection {
-        font-size: 1.6rem;
-    }
-
     .coinInfo {
         display: flex;
         align-items: center;
@@ -1521,5 +1499,9 @@ input[type="number"] {
     .spentCoins {
         color: #d9534f;
         font-weight: bold;
+    }
+
+    .textData {
+        font-size: 14px !important;
     }
 }

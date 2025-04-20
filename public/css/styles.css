@@ -69,105 +69,94 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
-
-    .navegacion {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-left: 40px;
-        margin-right: 40px;
-        padding: 1.5rem 0;
-
-        .anclaLogo {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1.2rem;
-
-            &:hover {
-                animation: tilt-n-move-shaking 0.25s infinite;
-            }
-        }
-
-        .listaNav {
-            list-style: none;
-            display: flex;
-            align-items: center;
-
-            .listaItem {
-                margin-right: 20px;
-
-                .linkNav {
-                    text-decoration: none;
-                    color: #ffffff;
-                    font-weight: 700;
-                    font-size: 1.1rem;
-                    padding: 0.5rem 1rem;
-                    transition: transform 0.3s, box-shadow 0.3s;
-
-                    &:hover {
-                        transform: scale(0.95);
-                        box-shadow: 0 0 20px rgba(241, 255, 131, 0.8);
-                        border-radius: 5px;
-                    }
-                }
-
-                .linkNav.iniciarSesion {
-                    background-color: #171717;
-                    color: white;
-                    border-radius: 5px;
-                    transition: transform 0.3s, box-shadow 0.3s;
-
-                    &:hover {
-                        background-color: #F1FF83;
-                        color: #171717;
-                    }
-                }
-
-                .linkNav.cerrarSesion {
-                    background-color: #171717;
-                    color: white;
-                    border-radius: 5px;
-                    transition: transform 0.3s, box-shadow 0.3s;
-
-                    &:hover {
-                        background-color: #F1FF83;
-                        color: #171717;
-                    }
-                }
-            }
-        }
-    }
 }
 
+.header .navegacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 1.5rem 0;
+}
+
+.header .navegacion .anclaLogo {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.header .navegacion .anclaLogo:hover {
+    animation: tilt-n-move-shaking 0.25s infinite;
+}
+
+.header .navegacion .listaNav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.header .navegacion .listaNav .listaItem {
+    margin-right: 20px;
+}
+
+.header .navegacion .listaNav .listaItem .linkNav {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.header .navegacion .listaNav .listaItem .linkNav:hover {
+    transform: scale(0.95);
+    box-shadow: 0 0 20px rgba(241, 255, 131, 0.8);
+    border-radius: 5px;
+}
+
+.header .navegacion .listaNav .listaItem .linkNav.iniciarSesion,
+.header .navegacion .listaNav .listaItem .linkNav.cerrarSesion {
+    background-color: #171717;
+    color: white;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.header .navegacion .listaNav .listaItem .linkNav.iniciarSesion:hover,
+.header .navegacion .listaNav .listaItem .linkNav.cerrarSesion:hover {
+    background-color: #F1FF83;
+    color: #171717;
+}
+
+/* MEDIA QUERY PARA PANTALLAS DE HASTA 768px */
 @media (max-width: 768px) {
     .header {
         height: initial;
+    }
 
-        .navegacion {
-            margin-left: 10px;
-            margin-right: 10px;
-            flex-direction: column;
-            row-gap: 20px;
+    .header .navegacion {
+        margin-left: 10px;
+        margin-right: 10px;
+        flex-direction: column;
+        row-gap: 20px;
+    }
 
-            .anclaLogo {
-                font-size: 1.2rem;
-                font-weight: 700;
-            }
+    .header .navegacion .anclaLogo {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
 
-            .listaNav {
-                padding: initial;
+    .header .navegacion .listaNav {
+        padding: initial;
+    }
 
-                .listaItem {
-                    .linkNav {
-                        font-weight: 400;
-                        margin-right: initial;
-                        font-size: 1rem;
-                        padding: 0.2rem;
-                    }
-                }
-            }
-        }
+    .header .navegacion .listaNav .listaItem .linkNav {
+        font-weight: 400;
+        margin-right: initial;
+        font-size: 1rem;
+        padding: 0.2rem;
     }
 }
 

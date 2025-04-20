@@ -720,7 +720,7 @@ body {
 
             .main {
                 .seccionRegistrarse {
-                    width: 80%;
+                    width: 95% !important;
                     padding: 10px 10px;
 
                     .tituloRegistrarse {

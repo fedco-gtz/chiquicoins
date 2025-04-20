@@ -1711,3 +1711,7 @@ hr {
     text-decoration: none;
     border-radius: 10px;
 }
+
+.botonMail:hover {
+    opacity: 0.8;
+}

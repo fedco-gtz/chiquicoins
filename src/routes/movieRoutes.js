@@ -38,8 +38,14 @@ router.get('/', async (req, res) => {
 
 router.get('/adminMovie', async (req, res) => {
     try {
-        const consultaUsuarios = `SELECT id, nombre, apellido, colegio, curso FROM usuarios WHERE role_id = 1`;
+        const consultaUsuarios = `
+            SELECT id, nombre, apellido, colegio, curso
+            FROM usuarios
+            WHERE role_id = 1
+            ORDER BY apellido ASC
+        `;
         const [rowsUsuarios] = await pool.query(consultaUsuarios);
+
         const usuarios = rowsUsuarios.map(usuario => ({
             id: usuario.id,
             nombre: usuario.nombre,
@@ -47,7 +53,15 @@ router.get('/adminMovie', async (req, res) => {
             colegio: usuario.colegio,
             curso: usuario.curso
         }));
-        res.render('adminMovie', { usuarios });
+
+        const colegiosUnicos = [...new Set(rowsUsuarios.map(u => u.colegio))].map(colegio => ({ colegio }));
+        const cursosUnicos = [...new Set(rowsUsuarios.map(u => u.curso))].map(curso => ({ curso }));
+
+        res.render('adminMovie', {
+            usuarios,
+            colegios: colegiosUnicos,
+            cursos: cursosUnicos
+        });
     } catch (error) {
         console.error('Error al obtener los usuarios para el formulario:', error);
         res.status(500).json({ error: 'Hubo un error al obtener los usuarios' });
@@ -55,61 +69,96 @@ router.get('/adminMovie', async (req, res) => {
 });
 
 router.post('/adminMovie', async (req, res) => {
-    const { usuario_id, coins_ganados, coins_gastados } = req.body;
+    const { colegio, curso } = req.body;
 
     try {
-        if (!usuario_id) {
-            throw new Error('El ID del usuario es obligatorio');
-        }
-        const [userRows] = await pool.query('SELECT nombre, apellido, email FROM usuarios WHERE id = ?', [usuario_id]);
-        if (userRows.length === 0) {
-            throw new Error('Usuario no encontrado');
-        }
-        const { nombre, apellido, email } = userRows[0];
-        const id = await generarIdUnico();
-        const ganados = coins_ganados ?? 0;
-        const gastados = coins_gastados ?? 0;
-        const consultaInsert = `
-            INSERT INTO catalogo 
-            (id, usuario_id, coins_ganados, coins_gastados)
-            VALUES (?, ?, ?, ?)
+        let consultaUsuarios = `
+            SELECT id, nombre, apellido, colegio, curso
+            FROM usuarios
+            WHERE role_id = 1
         `;
-        await pool.query(consultaInsert, [id, usuario_id, ganados, gastados]);
-        const consultaCoins = `
-            SELECT 
-                SUM(coins_ganados) AS coins_ganados, 
-                SUM(coins_gastados) AS coins_gastados 
-            FROM catalogo 
-            WHERE usuario_id = ?
-        `;
-        const [resultadosCoins] = await pool.query(consultaCoins, [usuario_id]);
+        
+        const queryParams = [];
+        
+        if (colegio) {
+            consultaUsuarios += ` AND colegio = ?`;
+            queryParams.push(colegio);
+        }
+        
+        if (curso) {
+            consultaUsuarios += ` AND curso = ?`;
+            queryParams.push(curso);
+        }
 
-        const totalGanados = resultadosCoins[0]?.coins_ganados ?? 0;
-        const totalGastados = resultadosCoins[0]?.coins_gastados ?? 0;
-        const disponibles = totalGanados - totalGastados;
-        const mailOptions = {
-            from: 'coinschiqui@gmail.com',
-            to: email,
-            subject: '🪙 Resumen de tus ChiquiCoins',
-            html: `
-                <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; border-radius: 10px; max-width: 500px; margin: auto;">
-                    <h2 style="color: #2c3e50;">¡Hola ${nombre} ${apellido}! 👋</h2>
-                    <p>Te dejamos un resumen actualizado de tus <strong>ChiquiCoins 🪙</strong>:</p>
-                    <ul style="list-style: none; font-size: 16px; padding: 0;">
-                        <li>🟢 <strong>Monedas ganadas:</strong> ${totalGanados}</li>
-                        <li>🔴 <strong>Monedas gastadas:</strong> ${totalGastados}</li>
-                        <li>💰 <strong>Saldo disponible:</strong> ${disponibles}</li>
-                    </ul>
-                    <p>Gracias por seguir usando <strong>ChiquiCoins</strong>. ¡Seguimos creciendo juntos! 🚀</p>
-                    <small style="color: #888;">*Este mensaje fue enviado automáticamente. No responder.</small>
-                </div>
-            `
-        };
-        await transporter.sendMail(mailOptions);
+        consultaUsuarios += ` ORDER BY apellido ASC`;
+
+        const [rowsUsuarios] = await pool.query(consultaUsuarios, queryParams);
+
+        const usuarios = rowsUsuarios.map(usuario => ({
+            id: usuario.id,
+            nombre: usuario.nombre,
+            apellido: usuario.apellido,
+            colegio: usuario.colegio,
+            curso: usuario.curso
+        }));
+
+        const consultaTodos = `SELECT colegio, curso FROM usuarios WHERE role_id = 1`;
+        const [todosUsuarios] = await pool.query(consultaTodos);
+
+        const colegiosUnicos = [...new Set(todosUsuarios.map(u => u.colegio))].map(c => ({
+            colegio: c,
+            selected: c === colegio
+        }));
+
+        const cursosUnicos = [...new Set(todosUsuarios.map(u => u.curso))].map(c => ({
+            curso: c,
+            selected: c === curso
+        }));
+
+        res.render('adminMovie', {
+            usuarios,
+            colegios: colegiosUnicos,
+            cursos: cursosUnicos,
+            mostrarMensaje:false
+        });
+    } catch (error) {
+        console.error('Error al filtrar los usuarios:', error);
+        res.status(500).json({ error: 'Hubo un error al filtrar los usuarios' });
+    }
+});
+
+router.post('/adminMovie/coins', async (req, res) => {
+    const body = req.body;
+
+    try {
+        const ids = new Set();
+
+        for (const key of Object.keys(body)) {
+            const match = key.match(/coins_(ganados|gastados)_(\d+)/);
+            if (match) {
+                ids.add(match[2]);
+            }
+        }
+
+        for (const id of ids) {
+            const ganados = parseInt(body[`coins_ganados_${id}`] || '0', 10);
+            const gastados = parseInt(body[`coins_gastados_${id}`] || '0', 10);
+
+            if (ganados === 0 && gastados === 0) continue;
+
+            const uniqueId = await generarIdUnico();
+
+            await pool.query(
+                `INSERT INTO fedco_coins.catalogo (id, usuario_id, coins_ganados, coins_gastados)
+                 VALUES (?, ?, ?, ?)`,
+                [uniqueId, id, ganados, gastados]
+            );
+        }
+
         res.redirect('/adminMovie');
     } catch (error) {
-        console.error('Hubo un error al asignar coins:', error);
-        res.status(500).json({ error: error.message });
+        console.error('Error al asignar ChiquiCoins:', error);
+        res.status(500).json({ error: 'Error al asignar ChiquiCoins' });
     }
 });
 
@@ -186,6 +235,5 @@ router.post('/detail', async (req, res) => {
         res.status(500).send('Ocurrió un error al filtrar los datos.');
     }
 });
-
 
 export default router;

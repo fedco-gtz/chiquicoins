@@ -4,61 +4,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .formulario {
+            margin: 0 auto 20px auto;
+            width: 37%;
+            background-color: rgb(42, 42, 42);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .etiqueta {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .mensaje {
+            margin-top: 20px;
+            font-style: italic;
+            color: #F1FF83;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .seleccion {
+            margin-right: 20px;
+            padding: 5px;
+            border-radius: 30px;
+            border: solid 2px #ffb183;
+        }
+
+        .filtrar {
+            padding: 6px 12px;
+            background-color: #171717;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .filtrar:hover {
+            cursor: pointer;
+            background-color: #F1FF83;
+            color: #171717;
+        }
+
+        .button-plus {
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: solid 3px #4CAF50;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 19px;
+        }
+
+        .button-plus:hover {
+            background-color: #ffffff;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .button-minus {
+            padding: 6px 12px;
+            background-color: #d9534f;
+            color: #ffffff;
+            border: solid 3px #d9534f;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 19px;
+        }
+
+        .button-minus:hover {
+            background-color: #ffffff;
+            color: #d9534f;
+            cursor: pointer;
+        }
+
+        .number {
+            font-weight: bold;
+            font-size: 19px;
+            border: none;
+            background-color: transparent;
+            width: 35px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            pointer-events: none;
+            background-color: transparent;
+            border: none;
+            text-align: center;
+        }
+
+        .formularioTabla {
+            width: 100%;
+        }
+
+        .tabla {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #171717;
+            text-align: left;
+            color: #171717;
+            text-align: center;
+        }
+
+        th {
+            background-color: #F1FF83;
+            color: #171717;
+            justify-content: center;
+            align-items: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .botonMail {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 32px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .botonMail:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 
-<body>
-    <main id="main" class="main">
+<body id="main" class="main">
+    <nav class="navegacion">
+        <ul class="listaNav">
+            <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin/{{id}}">Volver al
+                    perfil</a></li>
+            <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminUser">Administrar
+                    Estudiantes</a></li>
+            <li class="listaItem"><a class="linkNav administradorPeliculas" href="/detail">Detalle General</a></li>
+        </ul>
+    </nav>
+
+    <main>
         <section class="adminSection">
             <h1 class="tituloSection">Asignando Chiqui Coins</h1>
-            <form class="formularioProducto" action="/adminMovie" method="POST">
-                <div class="formGroup">
-                    <label for="usuario_id">Seleccionar estudiante</label>
-                    <input list="usuarios" id="usuario_nombre" name="usuario_nombre" required>
-                    <input class="hidden" type="hidden" id="usuario_id" name="usuario_id">
-                    <datalist id="usuarios">
-                        {{#each usuarios}}
-                        <option value="{{this.nombre}} {{this.apellido}} ({{this.curso}}° - {{this.colegio}})"
-                            data-id="{{this.id}}"></option>
-                        {{/each}}
-                    </datalist>
-                </div>
+            <form class="formulario" method="POST" action="/adminMovie">
+                <label class="etiqueta" for="colegio">Colegio:</label>
+                <select class="seleccion" name="colegio" id="colegio" required>
+                    <option value="">Colegio</option>
+                    {{#each colegios}}
+                    <option value="{{this.colegio}}" {{#if this.selected}}selected{{/if}}>{{this.colegio}}</option>
+                    {{/each}}
+                </select>
 
-                <div class="formGroup">
-                    <label for="coins_ganados">Coins ganados</label>
-                    <input type="number" id="coins_ganados" name="coins_ganados" min="0" value="0" required>
-                </div>
+                <label class="etiqueta" for="curso">Curso:</label>
+                <select class="seleccion" name="curso" id="curso" required>
+                    <option value="">Curso</option>
+                    {{#each cursos}}
+                    <option value="{{this.curso}}" {{#if this.selected}}selected{{/if}}>{{this.curso}}</option>
+                    {{/each}}
+                </select>
 
-                <div class="formGroup">
-                    <label for="coins_gastados">Coins gastados</label>
-                    <input type="number" id="coins_gastados" name="coins_gastados" min="0" value="0" required>
-                </div>
-
-                <div class="formGroup botonGroup">
-                    <button type="submit" class="botonEnviar">Asignar</button>
-                </div>
+                <button class="filtrar" type="submit">Filtrar</button>
             </form>
-            <nav class="navegacion">
-                <ul class="listaNav">
-                    <li class="listaItem"><a class="linkNav administradorPeliculas" href="/profileAdmin/{{id}}">Volver
-                            al perfil</a></li>
-                    <li class="listaItem"><a class="linkNav administradorPeliculas" href="/adminUser">Administrar
-                            Estudiantes</a>
-                    </li>
-                    <li class="listaItem"><a class="linkNav administradorPeliculas" href="/detail">Detalle General</a>
-                    </li>
-                </ul>
-            </nav>
+
+            {{#if mostrarMensaje}}
+            <p class="mensaje">Seleccioná un colegio y un curso para poder asignar coins.</p>
+            {{else}}
+            {{#if usuarios.length}}
+            <div style="display: flex; justify-content: center;">
+                <form class="formularioTabla" method="POST" action="/adminMovie/coins">
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>Estudiante</th>
+                                <th>Coins Ganados</th>
+                                <th>Coins Gastados</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each usuarios}}
+                            <tr>
+                                <td>{{this.apellido}}, {{this.nombre}}</td>
+                                <td>
+                                    <button type="button" class="button-minus"
+                                        onclick="decrement('ganados-{{this.id}}')">-</button>
+                                    <input class="number" type="number" id="ganados-{{this.id}}"
+                                        name="coins_ganados_{{this.id}}" min="0" value="0">
+                                    <button type="button" class="button-plus"
+                                        onclick="increment('ganados-{{this.id}}')">+</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="button-minus"
+                                        onclick="decrement('gastados-{{this.id}}')">-</button>
+                                    <input class="number" type="number" id="gastados-{{this.id}}"
+                                        name="coins_gastados_{{this.id}}" min="0" value="0">
+                                    <button type="button" class="button-plus"
+                                        onclick="increment('gastados-{{this.id}}')">+</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <button type="submit" class="botonMail">Asignar</button>
+                </form>
+            </div>
+            {{else}}
+            <p class="mensaje">No hay estudiantes para mostrar con los filtros seleccionados.</p>
+            {{/if}}
+            {{/if}}
         </section>
     </main>
 </body>
+
 <script>
-    document.getElementById('usuario_nombre').addEventListener('input', function () {
-        var datalist = document.getElementById('usuarios');
-        var selectedOption = Array.from(datalist.options).find(option => option.value === this.value);
-        if (selectedOption) {
-            document.getElementById('usuario_id').value = selectedOption.getAttribute('data-id');
+    function increment(id) {
+        let input = document.getElementById(id);
+        input.value = parseInt(input.value) + 1;
+    }
+
+    function decrement(id) {
+        let input = document.getElementById(id);
+        if (parseInt(input.value) > 0) {
+            input.value = parseInt(input.value) - 1;
         }
-    });
+    }
 </script>
 
 </html>
